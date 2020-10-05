@@ -1,5 +1,7 @@
 from scapy.all import *
 import os
+import struct
+import sys
 
 def zaciatokFunkcie(funkcia, zac):
     text = ""
@@ -14,42 +16,68 @@ def zaciatokFunkcie(funkcia, zac):
     print(text)
     print(ram)
 
+def vlastnyHexdump(bytes):
+    n = 0
+    for a in bytes:
+        n += 1
+        if n % 16 == 0:
+            print("{:02x}".format(a))
+        elif n % 8 == 0:
+            print("{:02x}".format(a), end="  ")
+        else:
+            print("{:02x}".format(a), end=" ")
+    n = 0
 
-def uloha1(packetList, filename):
+def uloha1(rawPacketList):
     zaciatokFunkcie(uloha1.__name__, True)
 
     ramec = 1
-    for item in packetList:
+    for item in rawPacketList:
         print("rámec", ramec)
         ramec += 1
 
-        b = raw(item)
-        n = 0
-        print("dĺžka rámca poskytnutá pcap API – {} B".format(len(b)))
-        print("dĺžka rámca prenášaného po médiu – {} B".format("neviem"))
-        print("typ")
+        # print(type(item))
+        # print(item)
+
+        # break
+        
+        dlzkaAPI = len(item)
+        dlzkaMedium = dlzkaAPI + 4
+        if dlzkaMedium < 64:
+            dlzkaMedium = 64
+
+        print("Dĺžka rámca poskytnutá pcap API – {} B".format(dlzkaAPI))
+        print("Dĺžka rámca prenášaného po médiu – {} B".format(dlzkaMedium))
+
+        # print("Velkost ramca na disku je ", sys.getsizeof(item))
+
+        print("Typ rámca:", end=" ")
+        if item[12:13] < b'\x06':
+            # print("{} {}".format(item[12:13], b'\x06'))
+            if item[14:15] == b'\xFF':
+                print("Novell 802.3 RAW")
+            elif item[14:15] == b'\xAA':
+                print("IEEE 802.3 LLC + SNAP")
+            else:
+                print("IEEE 802.3 LLC")
+        else:
+            print("Ethernet II")
+
+
         print("Zdrojová MAC adresa:", end=" ")
-        for a in b[6:12]:
+        for a in item[6:12]:
             print("{:02x}".format(a), end=" ")
-    #    print("\n")
+
         print("\nCieľová MAC adresa:", end=" ")
-        for a in b[0:6]:
+        for a in item[0:6]:
             print("{:02x}".format(a), end=" ")
-        print("\nneviem")
-        print("zdrojová IP adresa: ", end=" ")
-        print()
-        print("cieľová IP adresa: ", end=" ")
         print()
 
-        for a in b:
-            n += 1
-            if n % 16 == 0:
-                print("{:02x}".format(a))
-            elif n % 8 == 0:
-                print("{:02x}".format(a), end="  ")
-            else:
-                print("{:02x}".format(a), end=" ")
-        n = 0
+
+        # vlastnyHexdump(item)
+        # print("\n")
+        hexdump(item)
+
         print("\n")
 
     zaciatokFunkcie(uloha1.__name__, False)
@@ -86,6 +114,8 @@ def cestakSuboru():
     while True:
         vyber = int(input())
 
+        # vyber = 26
+
         if(vyber == -1):
             print("Koniec programu")
             return
@@ -103,30 +133,28 @@ def cestakSuboru():
 def main():
     zaciatokFunkcie(main.__name__, True)
 
-#    filename = cesta('vzorky_pcap_na_analyzu/eth-8.pcap')
-
     filename = cestakSuboru()
 
     while filename != None:
         print("Bola zvolena cesta ", filename)
-        packets = rdpcap(filename)
+
+        packets = rdpcap(filename)                  # musim pouzit raw
+        # packets = RawPcapReader(filename)           # vracia tuple
+        # packets2 = PcapReader(filename)              # vracia to iste ako rdpcap a tiez treba pouzit raw
+        # packets = sniff(filename)                   # nefunguje
 
         packetList = PacketList([p for p in packets])
-        #print(filename)
+        rawPacketList = [raw(p) for p in packetList]
+        uloha1(rawPacketList)
 
-        #cestakSuboru()
-        uloha1(packetList, filename)
+        # print("packets {} {}".format(type(packets), sys.getsizeof(packets)))
+        # print("packetList {} {}".format(type(packetList), sys.getsizeof(packetList)))
+        # print("rawPacketList {} {}".format(type(rawPacketList), sys.getsizeof(rawPacketList)))
 
-        filename = cestakSuboru()
+        # print(filename)
 
-
-    # b = raw(packetList[0])
-    # print({":02x"}.format(b[22]))
-
-    # for packet in packetList:
-    #     print(packet, "\n\n\n")
-    #    print (''.join("{:02x}".format(ord(str(x))) for x in packet))
-    #    print(packet)
+        # filename = cestakSuboru()
+        filename = None
 
     zaciatokFunkcie(main.__name__, False)
 
