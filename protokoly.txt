@@ -1,0 +1,45 @@
+#Ethertypes
+0x0800 IPv4
+0x0801 X.75 Internet
+0x0805 X.25 Level 3
+0x0806 ARP
+0x8035 Revers ARP
+0x809b Appletalk
+0x80f3 Appletalk AARP
+0x8100 IEEE 802.1Q VLAN tagged frames
+0x8137 Novell IPX
+0x86dd IPv6
+0x880b PPP
+0x8847 MPLS
+0x8848 MPLS with upstream assigned label
+0x8863 PPPoE Discovery Stage
+0x8864 PPPoE Session Stage
+#SAPs
+0x00 NULL SAP
+0x02 LLC Sublayer Management or Individual
+0x03 LLC Sublayer Management or Group
+0x06 IP (DOD Internet Protocol)
+0x0e PROWAY (IEC 955)
+0x42 BPDU (Bridge PDU 802.1 Spanning tree)
+0x4e MMS (Manufacturing Message Service)
+0x5e ISI IP
+0x7e X.25 PLP (ISO 8208)
+0x8e PROWAY (IEC 955) Active Station List Maintenance
+0xaa SNAP
+0xe0 IPX (Novell NetWare)
+0xf4 LAN Management
+0xfe ISO Network Layer Protocols
+0xff Global DSAP
+#IP
+0x01 ICMP
+0x02 IGMP
+0x06 TCP
+0x09 IGRP
+0x11 UDP
+0x2f GRE
+0x32 ESP
+0x33 AH
+0x39 SKIP
+0x58 EIGRP
+0x59 OSPF
+0x73 L2TP

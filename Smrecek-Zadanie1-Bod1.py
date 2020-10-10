@@ -29,52 +29,6 @@ def vlastnyHexdump(bytes):
             print("{:02x}".format(a), end=" ")
     n = 0
 
-
-def uloha1(rawPacketList):
-    zaciatokFunkcie(uloha1.__name__, True)
-
-    ramec = 1
-    for item in rawPacketList:
-        print("rámec", ramec)
-        ramec += 1
-
-        dlzkaAPI = len(item)
-        dlzkaMedium = dlzkaAPI + 4
-        if dlzkaMedium < 64:
-            dlzkaMedium = 64
-
-        print("Dĺžka rámca poskytnutá pcap API – {} B".format(dlzkaAPI))
-        print("Dĺžka rámca prenášaného po médiu – {} B".format(dlzkaMedium))
-
-        print("Typ rámca:", end=" ")
-        if item[12:13] < b'\x06':
-            if item[14:15] == b'\xFF':
-                print("Novell 802.3 RAW")
-            elif item[14:15] == b'\xAA':
-                print("IEEE 802.3 LLC + SNAP")
-            else:
-                print("IEEE 802.3 LLC")
-        else:
-            print("Ethernet II")
-
-        print("Zdrojová MAC adresa:", end=" ")
-        for a in item[6:12]:
-            print("{:02x}".format(a), end=" ")
-
-        print("\nCieľová MAC adresa:", end=" ")
-        for a in item[0:6]:
-            print("{:02x}".format(a), end=" ")
-        print()
-
-        # vlastnyHexdump(item)
-        # print("\n")
-
-        hexdump(item)
-        print("")
-
-    zaciatokFunkcie(uloha1.__name__, False)
-
-
 def cesta(relCesta=""):
     zaciatokFunkcie(cesta.__name__, True)
 
@@ -84,7 +38,6 @@ def cesta(relCesta=""):
     # return dirname + "/" + relCesta
 
     zaciatokFunkcie(cesta.__name__, False)
-
 
 def cestakSuboru():
     zaciatokFunkcie(cestakSuboru.__name__, True)
@@ -119,6 +72,43 @@ def cestakSuboru():
 
     zaciatokFunkcie(cestakSuboru.__name__, False)
 
+def uloha1(rawPacketList):
+    zaciatokFunkcie(uloha1.__name__, True)
+
+    ramec = 1
+    for item in rawPacketList:
+        print("rámec", ramec)
+        ramec += 1
+
+        dlzkaAPI = len(item)
+        dlzkaMedium = dlzkaAPI + 4
+        if dlzkaMedium < 64:
+            dlzkaMedium = 64
+
+        print("Dĺžka rámca poskytnutá pcap API – {} B".format(dlzkaAPI))
+        print("Dĺžka rámca prenášaného po médiu – {} B".format(dlzkaMedium))
+
+        print("Typ rámca:", end=" ")
+        if item[12] < 0x06:
+            if item[14] == 0xFF:
+                print("Novell 802.3 RAW")
+            elif item[14] == 0xAA:
+                print("IEEE 802.3 LLC + SNAP")
+            else:
+                print("IEEE 802.3 LLC")
+        else:
+            print("Ethernet II")
+
+        print("Zdrojová MAC adresa:", " ".join("{:02X}".format(x) for x in item[6:12]))
+        print("Cieľová MAC adresa:", " ".join("{:02X}".format(x) for x in item[0:6]))
+
+        # vlastnyHexdump(item)
+        # print("\n")
+
+        hexdump(item)
+        print("")
+
+    zaciatokFunkcie(uloha1.__name__, False)
 
 def main():
     zaciatokFunkcie(main.__name__, True)
