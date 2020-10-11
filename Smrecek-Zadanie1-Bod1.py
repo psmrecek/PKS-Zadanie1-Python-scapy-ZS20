@@ -1,46 +1,62 @@
+# -----------------------------------------------------------
+# PKS - Zadanie 1 - Uloha 1
+# Cislovany vypis ramcov uvedenych v pcap subore s ich zakladnymi charakteristikami.
+#
+# Peter Smreček
+# email xsmrecek@stuba.sk
+# AIS ID 103130
+# -----------------------------------------------------------
+
 from scapy.all import *
 import os
-import struct
 import sys
 import datetime
 
-def zaciatokFunkcie(funkcia, zac):
-    text = ""
-    if zac == True:
-        text = "# Zaciatok funkcie {} #".format(funkcia)
-    else:
-        text = "# Koniec funkcie {} #".format(funkcia)
+# def zaciatokFunkcie(funkcia, zac):
+#     text = ""
+#     if zac == True:
+#         text = "# Zaciatok funkcie {} #".format(funkcia)
+#     else:
+#         text = "# Koniec funkcie {} #".format(funkcia)
+#
+#     ram = "#" * (len(text))
+#
+#     print(ram)
+#     print(text)
+#     print(ram)
 
-    ram = "#" * (len(text))
-
-    print(ram)
-    print(text)
-    print(ram)
-
-def vlastnyHexdump(bytes):
-    n = 0
-    for a in bytes:
-        n += 1
-        if n % 16 == 0:
-            print("{:02x}".format(a))
-        elif n % 8 == 0:
-            print("{:02x}".format(a), end="  ")
-        else:
-            print("{:02x}".format(a), end=" ")
-    n = 0
+# def vlastnyHexdump(bytes):
+#     n = 0
+#     for a in bytes:
+#         n += 1
+#         if n % 16 == 0:
+#             print("{:02x}".format(a))
+#         elif n % 8 == 0:
+#             print("{:02x}".format(a), end="  ")
+#         else:
+#             print("{:02x}".format(a), end=" ")
+#     n = 0
 
 def cesta(relCesta=""):
-    zaciatokFunkcie(cesta.__name__, True)
+    '''
+    Funkcia na spojenie cesty k .py suboru s relativnou cestou k pcap suboru. Relativna cesta
+    k pcap suboru moze zacinat len v mieste, kde sa nachadza .py subor, nie inde.
+    '''
+    # zaciatokFunkcie(cesta.__name__, True)
 
     dirname = os.path.dirname(__file__)
 
     return(os.path.join(dirname, relCesta))
     # return dirname + "/" + relCesta
 
-    zaciatokFunkcie(cesta.__name__, False)
+    # zaciatokFunkcie(cesta.__name__, False)
 
 def cestakSuboru():
-    zaciatokFunkcie(cestakSuboru.__name__, True)
+    '''
+    Funkcia pre citanie suboru obsahujuceho cesty k poskytnutym pcap suborom. Je mozne zadat aj vlastnu relativnu
+    cestu, alebo ukoncit program.
+    '''
+    # zaciatokFunkcie(cestakSuboru.__name__, True)
 
     path = cesta("zoznamSuborov.txt")
     # print(path)
@@ -70,10 +86,14 @@ def cestakSuboru():
 
         print("Nespravna volba, zadaj znova:")
 
-    zaciatokFunkcie(cestakSuboru.__name__, False)
+    # zaciatokFunkcie(cestakSuboru.__name__, False)
 
 def uloha1(rawPacketList):
-    zaciatokFunkcie(uloha1.__name__, True)
+    '''
+    Vypis dlzok ramca, typu ramca a MAC adries podla poziadaviek bodu 1 v zadani. Najpomalsou castou funkcie je
+    hexdump() vypis.
+    '''
+    # zaciatokFunkcie(uloha1.__name__, True)
 
     ramec = 1
     for item in rawPacketList:
@@ -106,12 +126,17 @@ def uloha1(rawPacketList):
         # print("\n")
 
         hexdump(item)
-        print("")
+        print()
 
-    zaciatokFunkcie(uloha1.__name__, False)
+    # zaciatokFunkcie(uloha1.__name__, False)
 
 def main():
-    zaciatokFunkcie(main.__name__, True)
+    '''
+    Hlavna funkcia programu. V slucke sa vybera pcap subor a analyzuje podla bodu 1. Zapis prebieha do externeho
+    textoveho suboru kvoli rychlosti zapisu aj scrollovatelnosti. Zakomentovane casti kodu po odkomentovani
+    meraju casovu narocnost.
+    '''
+    # zaciatokFunkcie(main.__name__, True)
 
     origVystup = sys.stdout
 
@@ -123,35 +148,30 @@ def main():
 
         print("Bola zvolena cesta ", filename)
 
-        casCitanieZac = datetime.datetime.now()
+        # casCitanieZac = datetime.datetime.now()
 
         packets = rdpcap(filename)
-        casCitanieKon = datetime.datetime.now()
+        # casCitanieKon = datetime.datetime.now()
+        # print("Citanie suboru zabralo {} ms".format((casCitanieKon - casCitanieZac).total_seconds() * 1000))
 
-        print("Citanie suboru zabralo {} ms".format((casCitanieKon - casCitanieZac).total_seconds() * 1000))
-
-        casPrepisuZac = datetime.datetime.now()
+        # casPrepisuZac = datetime.datetime.now()
         rawPacketList = [raw(p) for p in packets]
-        casPrepisuKon = datetime.datetime.now()
+        # casPrepisuKon = datetime.datetime.now()
 
-        print("Prepis suboru zabral {} ms".format((casPrepisuKon - casPrepisuZac).total_seconds() * 1000))
+        # print("Prepis suboru zabral {} ms".format((casPrepisuKon - casPrepisuZac).total_seconds() * 1000))
 
         sys.stdout = outputFile
-        casU1Zac = datetime.datetime.now()
+        # casU1Zac = datetime.datetime.now()
         uloha1(rawPacketList)
-        casU1Kon = datetime.datetime.now()
+        # casU1Kon = datetime.datetime.now()
         sys.stdout = origVystup
 
-        print("Funkcia uloha1() zabrala {} ms".format((casU1Kon - casU1Zac).total_seconds() * 1000))
+        # print("Funkcia uloha1() zabrala {} ms".format((casU1Kon - casU1Zac).total_seconds() * 1000))
 
         outputFile.close()
         filename = cestakSuboru()
-        # filename = None
 
-
-
-    zaciatokFunkcie(main.__name__, False)
-
+    # zaciatokFunkcie(main.__name__, False)
 
 if __name__ == "__main__":
     main()
