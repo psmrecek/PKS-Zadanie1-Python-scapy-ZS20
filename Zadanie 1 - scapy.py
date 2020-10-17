@@ -357,6 +357,16 @@ def zatvorenieKomunikacie(flag_k1, flag_k2, flag_k3, flag_k4, zaznam):
         # FIN FIN ACK ACK
         return True
 
+    jeden, dva = False, False
+    for i in zaznam:
+        if fin(i[1]):
+            if not jeden:
+                jeden = True
+            else:
+                dva = True
+    if jeden and dva:
+        return True
+
     return False
 
 # Todo
@@ -713,7 +723,7 @@ def uloha3(rawPacketList, hexDict):
 #     zaciatokFunkcie(konkretnePakety.__name__, False)
 
 def konkretnePakety(rawPacketList, hexDict, zoznam):
-    zaciatokFunkcie(uloha4.__name__, True)
+    zaciatokFunkcie(konkretnePakety.__name__, True)
 
     ramec = 0
     tftpPorty = []
@@ -785,10 +795,42 @@ def konkretnePakety(rawPacketList, hexDict, zoznam):
                 except KeyError:
                     sprava += "Neznáma ARP operácia {}\n".format(item[21])
 
-                sprava += "zdrojová hardvérová adresa: " + " ".join("{:02X}".format(x) for x in item[22:28]) + "\n"
-                sprava += "zdrojová protokolová adresa: " + ".".join("{}".format(x) for x in item[28:32]) + "\n"
-                sprava += "cieľová hardvérová adresa: " + " ".join("{:02X}".format(x) for x in item[32:38]) + "\n"
-                sprava += "cieľová protokolová adresa: " + ".".join("{}".format(x) for x in item[38:42]) + "\n"
+                OPE = item[21]
+                SHA = item[22:28]
+                SPA = item[28:32]
+                THA = item[32:38]
+                TPA = item[38:42]
+
+                if ramec == 1 and OPE == 1:
+                    sprava2 = ""
+                    try:
+                        sprava2 += "ARP {}, ".format(hexDict['ARP', item[21]])
+                    except KeyError:
+                        sprava2 += "Neznáma ARP operácia {}, ".format(item[21])
+                    sprava2 += "IP adresa: " + ".".join("{}".format(x) for x in item[38:42]) + ", "
+                    # sprava2 += "MAC adresa: " + " ".join("{:02X}".format(x) for x in item[32:38]) + "\n"
+                    sprava2 += "MAC adresa: ?? ?? ?? ?? ?? ??\n"
+
+                    sprava2 += "Zdrojová IP adresa: " + ".".join("{}".format(x) for x in item[28:32]) + ", "
+                    sprava2 += "Cieľová IP adresa: " + ".".join("{}".format(x) for x in item[38:42]) + "\n"
+                    sprava = sprava2 + sprava
+                # sprava += "zdrojová hardvérová adresa: " + " ".join("{:02X}".format(x) for x in item[22:28]) + "\n"
+                # sprava += "zdrojová protokolová adresa: " + ".".join("{}".format(x) for x in item[28:32]) + "\n"
+                # sprava += "cieľová hardvérová adresa: " + " ".join("{:02X}".format(x) for x in item[32:38]) + "\n"
+                # sprava += "cieľová protokolová adresa: " + ".".join("{}".format(x) for x in item[38:42]) + "\n"
+
+                if OPE == 2:
+                    sprava2 = ""
+                    try:
+                        sprava2 += "ARP {}, ".format(hexDict['ARP', item[21]])
+                    except KeyError:
+                        sprava2 += "Neznáma ARP operácia {}, ".format(item[21])
+                    sprava2 += "IP adresa: " + ".".join("{}".format(x) for x in item[38:42]) + ", "
+                    sprava2 += "MAC adresa: " + " ".join("{:02X}".format(x) for x in item[32:38]) + "\n"
+
+                    sprava2 += "Zdrojová IP adresa: " + ".".join("{}".format(x) for x in item[28:32]) + ", "
+                    sprava2 += "Cieľová IP adresa: " + ".".join("{}".format(x) for x in item[38:42]) + "\n"
+                    sprava = sprava2 + sprava
 
                 print(sprava, end="")
                 hexdump(item)
@@ -904,9 +946,37 @@ def konkretnePakety(rawPacketList, hexDict, zoznam):
             hexdump(item)
             print()
 
+    zaciatokFunkcie(konkretnePakety.__name__, False)
+
+def redukciaAvypis(rawPacketList, hexDict, zoznam):
+    rawPacLen = len(rawPacketList)
+
+    if rawPacLen > 20:
+        pacFront = [x for x in rawPacketList[:10]]
+        # print(len(pacFront))
+        # print(pacFront)
+        pacBack = [x for x in rawPacketList[-10:]]
+        # print(len(pacBack))
+        # print(pacBack)
 
 
-    zaciatokFunkcie(uloha4.__name__, False)
+        zoznamFront = [x for x in zoznam[:10]]
+        # print(len(zoznamFront))
+        # print(zoznamFront)
+        zoznamBack = [x for x in zoznam[-10:]]
+        # print(len(zoznamBack))
+        # print(zoznamBack)
+
+        pacSpolu = pacFront + pacBack
+        # print(len(pacSpolu))
+        # print(pacSpolu)
+        zoznamSpolu = zoznamFront + zoznamBack
+        # print(len(zoznamSpolu))
+        # print(zoznamSpolu)
+
+        konkretnePakety(pacSpolu, hexDict, zoznamSpolu)
+    else:
+        konkretnePakety(rawPacketList, hexDict, zoznam)
 
 
 def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
@@ -920,6 +990,8 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
     vypisARP = False
 
     komunikacieDict = {}
+    arpDict = {}
+
     for item in rawPacketList:
         etherII = False
 
@@ -1012,17 +1084,18 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
             komunikacieDict[ramec] = (srcIP, dstIP, type)
 
         if arp:
+            OPE = item[21]
             SHA = item[22:28]
             SPA = item[28:32]
             THA = item[32:38]
             TPA = item[38:42]
-            OPE = item[21]
 
             komunikacieDict[ramec] = (OPE, SHA, SPA, THA, TPA)
 
         ramec += 1
 
     if vypisTCP:
+        # print("Teraz")
         otvorena = False
         zatvorena = False
         vsetky = []
@@ -1086,14 +1159,18 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     prvaNeuplnaSubListMap = prvaNeuplna
                 elif not ibaPrva:
                     pass
+                    # print("Nedokoncene")
                     # Todo
 
                 if booleanUp and booleanNeup:
                     # return prvaUplna, prvaNeuplna
-                    print("Prva uplna komunikacia")
-                    konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
-                    print("Prva neuplna komunikacia")
-                    konkretnePakety(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
+                    print("Prva uplna (otvorena a zatvorena) komunikacia")
+                    # konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+                    redukciaAvypis(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+                    # print(len(prvaUplnaSubList))
+                    print("Prva neuplna (otvorena a nezatvorena) komunikacia")
+                    # konkretnePakety(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
+                    redukciaAvypis(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
                     return
             else:
                 pass
@@ -1104,16 +1181,17 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
         # print(prvaNeuplna, prvaNeuplnaSubListMap)
         if ibaPrva:
             if prvaUplna == None:
-                print("Ziadna uplna komunikacia nebola najdena")
+                print("Ziadna uplna (otvorena a zatvorena) komunikacia nebola najdena")
             else:
-                print("Prva uplna komunikacia")
-                konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+                print("Prva uplna (otvorena a zatvorena) komunikacia")
+                # konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+                redukciaAvypis(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
             if prvaNeuplna == None:
-                print("Ziadna otvorena a nezatvorena komunikacia nebola najdena")
+                print("Ziadna neuplna (otvorena a nezatvorena) komunikacia nebola najdena")
             else:
-                print("Prva neuplna komunikacia")
-                konkretnePakety(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
-
+                print("Prva neuplna (otvorena a nezatvorena) komunikacia")
+                # konkretnePakety(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
+                redukciaAvypis(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
         return
 
         # print("Cely dict", sys.getsizeof(komunikacieDict))
@@ -1123,7 +1201,7 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
         # print("Zaznam cisla 1 kluca 0", sys.getsizeof(komunikacieDict[k][0][1]))
 
     if vypisICMP:
-        print("Teraz ICMP")
+        # print("Teraz ICMP")
         ipSrc1, ipDst1, ipSrc2, ipDst2, type1, type2, k1, k2 = None, None, None, None, None, None, None, None
         b = True
         cislo = 1
@@ -1132,7 +1210,7 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
             # print(k, komunikacieDict[k])
             # print(b)
             # if komunikacieDict[k][2] == 0 or komunikacieDict[k][2] == 8:
-            if b:
+            if b and komunikacieDict[k][2] == 8:
                 ipSrc1 = komunikacieDict[k][0]
                 ipDst1 = komunikacieDict[k][1]
                 type1 = komunikacieDict[k][2]
@@ -1146,7 +1224,7 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                 k2 = k
                 b = True
                 # print("2", ipSrc2, ipDst2, type2)
-                if type1 == 8 and type2 == 0 and ipSrc1 == ipDst2 and ipSrc2 == ipDst1:
+                if (type1 == 8 and type2 == 0 and ipSrc1 == ipDst2 and ipSrc2 == ipDst1):
                     print("Komunikacia c. {}".format(cislo))
                     cislo += 1
                     rawPacketSubList = []
@@ -1159,8 +1237,62 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     # print(k2, komunikacieDict[k2])
 
     if vypisARP:
+        # arpProbe = b'\x00\x00\x00\x00\x00\x00'
+        # print(arpProbe)
+        komunikacia = 1
+
         for a in komunikacieDict:
-            print(a, komunikacieDict[a])
+            # print(a, komunikacieDict[a])
+            if komunikacieDict[a][0] == 1:
+                RSHA = komunikacieDict[a][1]
+                RSPA = komunikacieDict[a][2]
+                RTHA = komunikacieDict[a][3]
+                RTPA = komunikacieDict[a][4]
+
+                # if komunikacieDict[a] not in arpDict:
+                #     arpDict[komunikacieDict[a]] = [a]
+                # else:
+                #     arpDict[komunikacieDict[a]].append(a)
+
+                if (RSHA, RSPA, RTPA) not in arpDict:
+                    arpDict[RSHA, RSPA, RTPA] = [a]
+                else:
+                    arpDict[RSHA, RSPA, RTPA].append(a)
+
+            elif komunikacieDict[a][0] == 2:
+
+                PSHA = komunikacieDict[a][1]
+                PSPA = komunikacieDict[a][2]
+                PTHA = komunikacieDict[a][3]
+                PTPA = komunikacieDict[a][4]
+                if (PTHA, PTPA, PSPA) in arpDict:
+                    arpDict[PTHA, PTPA, PSPA].append(a)
+                    print("Komunikacia c. {}".format(komunikacia))
+                    komunikacia += 1
+                    rawPacketSubList2 = []
+                    for i in arpDict[PTHA, PTPA, PSPA]:
+                        rawPacketSubList2.append(rawPacketList[i-1])
+                    konkretnePakety(rawPacketSubList2, hexDict, arpDict[PTHA, PTPA, PSPA])
+                    arpDict.pop((PTHA, PTPA, PSPA), None)
+                else:
+                    print("Komunikacia c. {} (iba samostatny reply)".format(komunikacia))
+                    komunikacia += 1
+                    # print(a)
+                    rawPacketSubList2 = []
+                    rawPacketSubList2.append(rawPacketList[a-1])
+                    # print(rawPacketList[a-1], [a])
+                    konkretnePakety(rawPacketSubList2, hexDict, [a])
+
+
+        for ad in arpDict:
+            print("Komunikacia c. {} (neuplna)".format(komunikacia))
+            komunikacia += 1
+            rawPacketSubList2 = []
+            for i in arpDict[ad]:
+                rawPacketSubList2.append(rawPacketList[i - 1])
+            konkretnePakety(rawPacketSubList2, hexDict, arpDict[ad])
+            # print(ad, "          ", arpDict[ad])
+
 
     zaciatokFunkcie(komunikacie.__name__, False)
 
