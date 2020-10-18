@@ -1,0 +1,2566 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.16: http://docutils.sourceforge.net/" />
+<title>Smrecek-Zadanie1-Cele.py</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<p># -----------------------------------------------------------
+# PKS - Zadanie 1 - Finalne odovzdanie
+# Funkcie 1-4 vypracovane podla zadania.
+# ZS 2020
+#
+# Peter SmreÄŤek
+# email <a class="reference external" href="mailto:xsmrecek&#64;stuba.sk">xsmrecek&#64;stuba.sk</a>
+# AIS ID 103130
+# -----------------------------------------------------------</p>
+<p>from scapy.all import *
+import os
+import sys
+import datetime
+from collections import Counter</p>
+<p># def zaciatokFunkcie(funkcia, zac):
+#     '''
+#     Pomocna debuggovacia funkcia ktora vypise ktora funkcia bola prave spustena a ukoncena.
+#
+#     :param funkcia: nazov funkcie
+#     :param zac: boolean ci zacina alebo konci
+#     :return:
+#     '''
+#     text = &quot;&quot;
+#     if zac == True:
+#         text = &quot;# Zaciatok funkcie {} #&quot;.format(funkcia)
+#     else:
+#         text = &quot;# Koniec funkcie {} #&quot;.format(funkcia)
+#
+#     ram = &quot;#&quot; * (len(text))
+#
+#     print(ram)
+#     print(text)
+#     print(ram)
+#
+# def vlastnyHexdump(bytes):
+#     '''
+#     Vlastny hexdump pre pripadne porovnanie rychlosti vypisu oproti normalnemu hexdumpu
+#
+#     :param bytes: bytes jedneho ramca urcene na vypis
+#     :return:
+#     '''
+#     n = 0
+#     for a in bytes:
+#         n += 1
+#         if n % 16 == 0:
+#             print(&quot;{:02x}&quot;.format(a))
+#         elif n % 8 == 0:
+#             print(&quot;{:02x}&quot;.format(a), end=&quot;  &quot;)
+#         else:
+#             print(&quot;{:02x}&quot;.format(a), end=&quot; &quot;)
+#     n = 0</p>
+<dl class="docutils">
+<dt>def cesta(relCesta = &quot;&quot;):</dt>
+<dd><p class="first">'''
+Funkcia vracajuca absolutnu cestu k suboru ktoru vytvori z relativnej cesty zacinajucej v priecinku s kodom.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param relCesta:</th><td class="field-body">text relativnej cesty</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">absolutna cesta</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 61)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(cesta.__name__, True)</p>
+<p>dirname = os.path.dirname(__file__)</p>
+<p>return(os.path.join(dirname, relCesta))</p>
+<p class="last"># zaciatokFunkcie(cesta.__name__, False)</p>
+</dd>
+<dt>def cestakSuboru():</dt>
+<dd><p class="first">'''
+Funkcia ktora precita pomocny subor zoznamSuborov.txt obsahujuci relativne cesty ku vzorovym suborom,
+vypise ho ocislovany na obrazovku a umozni vybrat si subor z tohoto zoznamu, pripadne zadat vlastnu
+relativnu cestu k lubovolnemu suboru. Tento lubovolny subor je potrebne umiestnit do priecinka s kodom.
+Funkcia taktiez umoznuje ukoncit program.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 78)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(cestakSuboru.__name__, True)</p>
+<p>path = cesta(&quot;zoznamSuborov.txt&quot;)
+#print(path)
+s = open(path, &quot;r&quot;)
+zoznam = s.readlines()
+s.close()</p>
+<dl class="docutils">
+<dt>for number, line in enumerate(zoznam, 1):</dt>
+<dd>print(&quot;{:03}: {}&quot;.format(number, line), end=&quot;&quot;)</dd>
+<dt>print(&quot;Stlac -1 pre ukoncenie programu, 0 pre zadanie vlastnej cesty alebo vyber cislo suboru od 1 do &quot;,</dt>
+<dd>len(zoznam))</dd>
+<dt>while True:</dt>
+<dd><p class="first">vyber = int(input())</p>
+<dl class="docutils">
+<dt>if(vyber == -1):</dt>
+<dd>print(&quot;Koniec programu&quot;)
+return</dd>
+<dt>elif(vyber == 0):</dt>
+<dd>print(&quot;Zadaj vlastnu relativnu cestu k suboru:&quot;)
+vlastnaCesta = input()
+return cesta(vlastnaCesta)</dd>
+<dt>elif(vyber &gt; 0 and vyber &lt;= len(zoznam)):</dt>
+<dd>return cesta((zoznam[vyber - 1])[:-1])</dd>
+</dl>
+<p class="last">print(&quot;Nespravna volba, zadaj znova:&quot;)</p>
+</dd>
+</dl>
+<p class="last"># zaciatokFunkcie(cestakSuboru.__name__, False)</p>
+</dd>
+<dt>def protokolSubor():</dt>
+<dd><p class="first">'''
+Funkcia precita externy subor protokoly.txt nachadzajuci sa v priecinku s kodom a prepise
+ho do slovnika. Na jednom riadku moze byt iba jeden vstup.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">return:</th><td class="field-body">slovnik kodov protokolov</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 116)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+hexDict = {}
+meno = &quot;&quot;
+with open(cesta('protokoly.txt'), 'r') as prot:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 120)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>for l in prot:</dt>
+<dd><dl class="first docutils">
+<dt>if l.startswith(&quot;#&quot;):</dt>
+<dd>split = l.split()
+meno = split[0][1:]                 # bez znaku #
+continue</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 125)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p>(cislo, nazov) = l.split(&quot; &quot;, 1)        # max pocet splitov je 1, lebo po cisle nasleduje nazov, ktory je vcelku</p>
+<p class="last">hexDict[meno, int(cislo, 16)] = nazov[:-1]</p>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 128)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return hexDict</p>
+</dd>
+<dt>def zistiPortProtokolu(hexDict, pismeno):</dt>
+<dd><p class="first">'''
+Pomocna funkcia na zistenie cisla protokolu alebo portu ktory prislucha nejakemu nazvu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokol</td>
+</tr>
+<tr class="field"><th class="field-name">param pismeno:</th><td class="field-body">jedno male pismeno pre vyber protokolu (podla zadania)</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">cislo protokolu</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 137)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+if pismeno == &quot;a&quot;:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 139)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;HTTP&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 142)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>if pismeno == &quot;b&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;HTTPS&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;c&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;TELNET&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;d&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;SSH&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;e&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;FTP CONTROL&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;f&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;FTP DATA&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;g&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;TFTP&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;h&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;ICMP&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if pismeno == &quot;i&quot;:</dt>
+<dd><dl class="first last docutils">
+<dt>for cislo, nazov in hexDict.items():</dt>
+<dd><dl class="first last docutils">
+<dt>if nazov == &quot;ARP&quot;:</dt>
+<dd>return cislo[1]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>def riadic():</dt>
+<dd><p class="first">'''
+Ovladacia funkcia programu - menu. Umoznuje vratit sa na vyber pcap suboru (odkial je mozno aj korektne ukoncit
+program), vypisat obsah pcap suboru podla ulohy 1, vypisat obsah pcap suboru podla ulohy 1-2-3 a vypisat obsah
+pcap suboru podla ulohy 4 a-i, pricom v kazdom z bodov a-i je moznost vybrat si ci ma byt vypis len hruby filter
+ramcov daneho protokolu (0), alebo vypis organizovany do komunikacii (1).
+Priklady vstupu (na vstupe moze byt len jeden znak alebo 3 znaky oddelene 2 medzerami):
+0
+1
+3
+4 a 0
+4 i 1</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 189)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(riadic.__name__, True)
+while(True):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 192)</p>
+Unexpected indentation.</div>
+<blockquote>
+<p>print(&quot;Zvol 0 pre vyber ineho pcap suboru&quot;)
+print(&quot;Zvol 1 pre vypis podla bodu 1&quot;)
+print(&quot;Zvol 3 pre vypis podla bodov 1-2-3 spolu&quot;)
+print(&quot;Zvol 4 pre ulohu 4, zvol bod ulohy 4 a-i, zvol 0 ci vypisat iba ramce alebo 1 pre vypis komunikacii podla zadania&quot;)</p>
+<p>vyber = input(&quot;Zadaj cisla [0,1,3] alebo vstup vo formate [4] [a-i] [0-1] &quot;)</p>
+<p>vyber4 = &quot;&quot;
+rozsah = [chr(i) for i in range(ord(&quot;a&quot;), ord(&quot;j&quot;))]</p>
+<dl class="docutils">
+<dt>if len(vyber) == 1:</dt>
+<dd><dl class="first docutils">
+<dt>if vyber != &quot;0&quot; and vyber != &quot;1&quot; and vyber != &quot;3&quot;:</dt>
+<dd>print(&quot;Nespravna volba, opakuj vyber&quot;)
+continue</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 206)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p class="last">return vyber</p>
+</dd>
+<dt>elif len(vyber) == 5:</dt>
+<dd><p class="first">vyber4 = vyber.split(&quot; &quot;)
+if vyber4[0] != &quot;4&quot; or vyber4[1] not in rozsah or (vyber4[2] != &quot;0&quot; and vyber4[2] != &quot;1&quot;):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 210)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(&quot;Nespravna volba, opakuj vyber&quot;)
+continue</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 212)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return vyber4</p>
+</dd>
+<dt>else:</dt>
+<dd>print(&quot;Nespravna volba, opakuj vyber&quot;)
+continue</dd>
+</dl>
+</blockquote>
+<p class="last"># zaciatokFunkcie(riadic.__name__, False)</p>
+</dd>
+<dt>def syn(flag):</dt>
+<dd><p class="first">'''
+Funkcia kontrolujuca ci flag je presne SYN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag:</th><td class="field-body">flag TCP protokolu</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 225)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# presna zhoda
+if flag == 0x02:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 228)</p>
+Unexpected indentation.</div>
+<blockquote>
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 229)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def synack(flag):</dt>
+<dd><p class="first">'''
+Funkcia kontrolujuca ci flag je presne SYN a ACK.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag:</th><td class="field-body">flag TCP protokolu</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 237)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# presna zhoda
+if flag == 0x12:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 240)</p>
+Unexpected indentation.</div>
+<blockquote>
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 241)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def ack(flag):</dt>
+<dd><p class="first">'''
+Funkcia kontrolujuca ci flag je presne ACK.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag:</th><td class="field-body">flag TCP protokolu</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 249)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# presna zhoda
+if flag == 0x10:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 252)</p>
+Unexpected indentation.</div>
+<blockquote>
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 253)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def fin(flag):</dt>
+<dd><p class="first">'''
+Funkcia kontrolujuca ci flag obsahuje FIN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag:</th><td class="field-body">flag TCP protokolu</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 261)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# kontrola iba fin, volna zhoda
+if flag &gt;&gt; 0 &amp; 1 == 1:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 264)</p>
+Unexpected indentation.</div>
+<blockquote>
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 265)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def ackfin(flag):</dt>
+<dd><p class="first">'''
+Funkcia kontrolujuca ci flag obsahuje FIN a ACK.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag:</th><td class="field-body">flag TCP protokolu</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 273)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# kontrola iba fin a iba ack, volna zhoda
+if flag &gt;&gt; 0 &amp; 1 == 1 and flag &gt;&gt; 4 &amp; 1 == 1:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 276)</p>
+Unexpected indentation.</div>
+<blockquote>
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 277)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def rst(flag):</dt>
+<dd><p class="first">'''
+Funkcia kontrolujuca ci flag obsahuje RST.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag:</th><td class="field-body">flag TCP protokolu</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 285)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# kontrola iba rst, volna zhoda
+if flag &gt;&gt; 2 &amp; 1 == 1:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 288)</p>
+Unexpected indentation.</div>
+<blockquote>
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 289)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def otvorenieKomunikacie(flag_z0, flag_z1, flag_z2):</dt>
+<dd><p class="first">'''
+Funkcia na overenie, ci bola komunikacia otvorena 3 way handshakeom (SYN-SYNACK-ACK).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag_z0:</th><td class="field-body">flag ramca 0 komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param flag_z1:</th><td class="field-body">flag ramca 1 komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param flag_z2:</th><td class="field-body">flag ramca 2 komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 299)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+if syn(flag_z0) and synack(flag_z1) and ack(flag_z2):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 301)</p>
+Unexpected indentation.</div>
+<blockquote>
+# print(&quot;Komunikacia otvorena&quot;)
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 303)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">return False</p>
+</dd>
+<dt>def zatvorenieKomunikacie(flag_k1, flag_k2, flag_k3, flag_k4, zaznam):</dt>
+<dd><p class="first">'''
+Funkcia na overenie, ci bola komunikacia uzavreta. Su osetrene 4 way handshake, 3 way handshake, RST ukoncenie
+aj ukoncenie jedneho uzla skor ako druheho.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">param flag_k1:</th><td class="field-body">flag posledneho ramca komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param flag_k2:</th><td class="field-body">flag predposledneho ramca komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param flag_k3:</th><td class="field-body">flag 3 ramca od konca komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param flag_k4:</th><td class="field-body">flag 4 ramca od konca komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param zaznam:</th><td class="field-body">list tuples ramcov komunikacie. Tuple obsahuje [0] poradove cislo ramce a [1] flag ramca</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 316)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+if (ack(flag_k1) and fin(flag_k2) and ack(flag_k3) and fin(flag_k4)):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 318)</p>
+Unexpected indentation.</div>
+<blockquote>
+# FIN ACK FIN ACK
+return True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 320)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>if rst(flag_k1) or rst(flag_k2):</dt>
+<dd># RST
+return True</dd>
+<dt>if (ack(flag_k1) and  ackfin(flag_k2) and fin(flag_k3)):</dt>
+<dd># FIN ACKFIN ACK
+return True</dd>
+<dt>if (ack(flag_k1) and ack(flag_k2) and fin(flag_k3) and fin(flag_k4)):</dt>
+<dd># FIN FIN ACK ACK
+return True</dd>
+</dl>
+<p>jeden, dva = False, False
+for i in zaznam:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 332)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>if fin(i[1]):</dt>
+<dd><dl class="first last docutils">
+<dt>if not jeden:</dt>
+<dd>jeden = True</dd>
+<dt>else:</dt>
+<dd>dva = True</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 337)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>if jeden and dva:</dt>
+<dd>return True</dd>
+</dl>
+<p class="last">return False</p>
+</dd>
+<dt>def uloha1(rawPacketList):</dt>
+<dd><p class="first">'''
+Vypis dlzok ramca, typu ramca a MAC adries podla poziadaviek bodu 1 v zadani. Najpomalsou castou funkcie je
+hexdump() vypis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov celeho suboru</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 349)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(uloha1.__name__, True)</p>
+<p>ramec = 1
+for item in rawPacketList:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 354)</p>
+Unexpected indentation.</div>
+<blockquote>
+<p>print(&quot;rĂˇmec&quot;, ramec)
+ramec += 1</p>
+<p>dlzkaAPI = len(item)
+dlzkaMedium = dlzkaAPI + 4
+if dlzkaMedium &lt; 64:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 360)</p>
+Unexpected indentation.</div>
+<blockquote>
+dlzkaMedium = 64</blockquote>
+<p>print(&quot;DÄşĹľka rĂˇmca poskytnutĂˇ pcap API â€“ {} B&quot;.format(dlzkaAPI))
+print(&quot;DÄşĹľka rĂˇmca prenĂˇĹˇanĂ©ho po mĂ©diu â€“ {} B&quot;.format(dlzkaMedium))</p>
+<p>print(&quot;Typ rĂˇmca:&quot;, end=&quot; &quot;)
+if item[12] &lt; 0x06:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 367)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>if item[14] == 0xFF:</dt>
+<dd>print(&quot;Novell 802.3 RAW&quot;)</dd>
+<dt>elif item[14] == 0xAA:</dt>
+<dd>print(&quot;IEEE 802.3 LLC + SNAP&quot;)</dd>
+<dt>else:</dt>
+<dd>print(&quot;IEEE 802.3 LLC&quot;)</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 373)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd>print(&quot;Ethernet II&quot;)</dd>
+</dl>
+<p>print(&quot;ZdrojovĂˇ MAC adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[6:12]))
+print(&quot;CieÄľovĂˇ MAC adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[0:6]))</p>
+<p># vlastnyHexdump(item)
+# print(&quot;n&quot;)</p>
+<p>hexdump(item)
+print()</p>
+</blockquote>
+<p class="last"># zaciatokFunkcie(uloha1.__name__, False)</p>
+</dd>
+<dt>def uloha2(rawPacketList, hexDict):</dt>
+<dd><p class="first">'''
+Vypis ramcov podla zadania ulohy 2. Vo finalnom odovzdani nie je moznost volat ako samostatnu funkciu,
+tato funkcia je sucastou funkcie 3.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov celeho suboru</td>
+</tr>
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokolov</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 395)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(uloha2.__name__, True)</p>
+<p>ramec = 1
+for item in rawPacketList:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 400)</p>
+Unexpected indentation.</div>
+<blockquote>
+<p>print(&quot;rĂˇmec&quot;, ramec)
+ramec += 1</p>
+<p>dlzkaAPI = len(item)
+dlzkaMedium = dlzkaAPI + 4
+if dlzkaMedium &lt; 64:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 406)</p>
+Unexpected indentation.</div>
+<blockquote>
+dlzkaMedium = 64</blockquote>
+<p>print(&quot;DÄşĹľka rĂˇmca poskytnutĂˇ pcap API â€“ {} B&quot;.format(dlzkaAPI))
+print(&quot;DÄşĹľka rĂˇmca prenĂˇĹˇanĂ©ho po mĂ©diu â€“ {} B&quot;.format(dlzkaMedium))</p>
+<p>print(&quot;Typ rĂˇmca:&quot;, end=&quot; &quot;)
+if item[12] &lt; 0x06:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 413)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>if item[14] == 0xFF:</dt>
+<dd>print(&quot;Novell 802.3 RAW&quot;)
+print(&quot;IPX&quot;)</dd>
+<dt>elif item[14] == 0xAA:</dt>
+<dd><p class="first">print(&quot;IEEE 802.3 LLC + SNAP&quot;)
+num2021 = 256 * item[20] + item[21]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 420)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(hexDict['Ethertypes', num2021])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 421)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇmy Ethertype 0x{:04x}&quot;.format(num2021))</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd><p class="first">print(&quot;IEEE 802.3 LLC&quot;)
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 426)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(&quot;DSAP&quot;, hexDict['SAPs', item[14]])
+print(&quot;SSAP&quot;, hexDict['SAPs', item[15]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 428)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇmy SAP 0x{:02x}&quot;.format(item[14]))</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 430)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd><p class="first">print(&quot;Ethernet II&quot;)
+num1213 = 256 * item[12] + item[13]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 434)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(hexDict['Ethertypes', num1213])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 435)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇmy Ethertype 0x{:04x}&quot;.format(num1213))</dd>
+</dl>
+</dd>
+</dl>
+<p>print(&quot;ZdrojovĂˇ MAC adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[6:12]))
+print(&quot;CieÄľovĂˇ MAC adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[0:6]))</p>
+<p>hexdump(item)
+print(&quot;&quot;)</p>
+</blockquote>
+<p class="last"># zaciatokFunkcie(uloha2.__name__, False)</p>
+</dd>
+<dt>def uloha3(rawPacketList, hexDict):</dt>
+<dd><p class="first">'''
+Funkcia pokryva poziadavky na vypis ramcov podla uloh 1-2-3. Urcuje sa protokol
+na 2-4 vrstve + pri TCP a UDP aj port, pri ICMP a ARP aj typy spravy. Na konci vypisu
+je uvedeny zoznam IP adries vsetkych prijimajucich uzlov a IP adresa uzla ktory prijal
+najviac paketov a pocet tychto paketov.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov celeho suboru</td>
+</tr>
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokolov</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 457)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(uloha3.__name__, True)</p>
+<p>ramec = 1</p>
+<p>prijimajuceUzly = Counter()
+etherII = False</p>
+<dl class="docutils">
+<dt>for item in rawPacketList:</dt>
+<dd><p class="first">etherII = False
+print(&quot;rĂˇmec&quot;, ramec)
+ramec += 1</p>
+<p>dlzkaAPI = len(item)
+dlzkaMedium = dlzkaAPI + 4
+if dlzkaMedium &lt; 64:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 473)</p>
+Unexpected indentation.</div>
+<blockquote>
+dlzkaMedium = 64</blockquote>
+<p>print(&quot;DÄşĹľka rĂˇmca poskytnutĂˇ pcap API â€“ {} B&quot;.format(dlzkaAPI))
+print(&quot;DÄşĹľka rĂˇmca prenĂˇĹˇanĂ©ho po mĂ©diu â€“ {} B&quot;.format(dlzkaMedium))</p>
+<p>print(&quot;Typ rĂˇmca:&quot;, end=&quot; &quot;)
+if item[12] &lt; 0x06:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 480)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>if item[14] == 0xFF:</dt>
+<dd>print(&quot;Novell 802.3 RAW&quot;)
+print(&quot;IPX&quot;)</dd>
+<dt>elif item[14] == 0xAA:</dt>
+<dd><p class="first">print(&quot;IEEE 802.3 LLC + SNAP&quot;)
+num2021 = 256 * item[20] + item[21]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 487)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(hexDict['Ethertypes', num2021])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 488)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇmy Ethertype 0x{:04x}&quot;.format(num2021))</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd><p class="first">print(&quot;IEEE 802.3 LLC&quot;)
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 493)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(&quot;DSAP&quot;, hexDict['SAPs', item[14]])
+print(&quot;SSAP&quot;, hexDict['SAPs', item[15]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 495)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇmy SAP 0x{:02x}&quot;.format(item[14]))</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 497)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd>print(&quot;Ethernet II&quot;)
+etherII = True</dd>
+</dl>
+<p>print(&quot;ZdrojovĂˇ MAC adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[6:12]))
+print(&quot;CieÄľovĂˇ MAC adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[0:6]))</p>
+<p>dlhOffset = 14
+# 14b pre DLH</p>
+<p>ipv4 = False
+arp = False</p>
+<p>ipOffset = 0
+tcp = False
+udp = False
+icmp = False</p>
+<dl class="docutils">
+<dt>if etherII:</dt>
+<dd><p class="first">num1213 = 256 * item[12] + item[13]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 518)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(hexDict['Ethertypes', num1213])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 519)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇmy Ethertype 0x{:04x}&quot;.format(num1213))</dd>
+<dt>if num1213 == 0x0806:</dt>
+<dd><p class="first"># Toto je analyza ARP natvrdo, podla cisla protokolu.
+arp = True
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 525)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(hexDict['ARP', item[21]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 526)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NeznĂˇma ARP operĂˇcia {}&quot;.format(item[21]))</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 528)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p class="last">print(&quot;zdrojovĂˇ hardvĂ©rovĂˇ adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[22:28]))
+print(&quot;zdrojovĂˇ protokolovĂˇ adresa:&quot;, &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[28:32]))
+print(&quot;cieÄľovĂˇ hardvĂ©rovĂˇ adresa:&quot;, &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[32:38]))
+print(&quot;cieÄľovĂˇ protokolovĂˇ adresa:&quot;, &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[38:42]))</p>
+</dd>
+<dt>if num1213 == 0x0800:</dt>
+<dd><p class="first"># Toto je analyza IPv4 natvrdo, podla cisla protokolu.
+ipv4 = True
+print(&quot;zdrojovĂˇ IP adresa:&quot;, &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[26:30]))
+print(&quot;cieÄľovĂˇ IP adresa:&quot;, &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[30:34]))</p>
+<dl class="docutils">
+<dt>if prijimajuceUzly[item[30:34]] == 0:</dt>
+<dd>prijimajuceUzly[item[30:34]] = 1</dd>
+<dt>else:</dt>
+<dd>prijimajuceUzly[item[30:34]] += 1</dd>
+<dt>try:</dt>
+<dd>print(hexDict['IP', item[23]])</dd>
+<dt>except KeyError:</dt>
+<dd>print(&quot;Neznamy IP protokol {}&quot;.format(item[23]))</dd>
+<dt>if item[23] == 0x06:</dt>
+<dd># Ak je to TCP tak sa bude pokracovat v analyze TCP
+tcp = True</dd>
+<dt>if item[23] == 0x11:</dt>
+<dd># Ak je to UDP tak sa bude pokracovat v analyze UDP
+udp = True</dd>
+<dt>if item[23] == 0x01:</dt>
+<dd># Ak je to ICMP tak sa bude pokracovat v analyze ICMP
+icmp = True</dd>
+</dl>
+<p class="last"># Vypocet velkosti IP hlavicky ktora moze mat premenlivu dlzku
+ipOffset = dlhOffset + (item[14] % 16) * 4
+# print(ipOffset)</p>
+</dd>
+</dl>
+</dd>
+<dt>if tcp and ipv4:</dt>
+<dd><p class="first"># Analyza TCP
+srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
+dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]</p>
+<dl class="docutils">
+<dt>if srcPort &lt; dstPort:</dt>
+<dd><dl class="first last docutils">
+<dt>try:</dt>
+<dd>print(hexDict['TCP', srcPort])</dd>
+<dt>except KeyError:</dt>
+<dd>print(&quot;NerozpoznanĂ˝ port&quot;)</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd><dl class="first last docutils">
+<dt>try:</dt>
+<dd>print(hexDict['TCP', dstPort])</dd>
+<dt>except KeyError:</dt>
+<dd>print(&quot;NerozpoznanĂ˝ port&quot;)</dd>
+</dl>
+</dd>
+</dl>
+<p class="last">print(&quot;zdrojovĂ˝ port:&quot;, srcPort)
+print(&quot;cieÄľovĂ˝ port:&quot;, dstPort)</p>
+</dd>
+<dt>if udp and ipv4:</dt>
+<dd><p class="first"># Analyza UDP</p>
+<p>srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
+dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]</p>
+<dl class="docutils">
+<dt>if srcPort &lt; dstPort:</dt>
+<dd><dl class="first last docutils">
+<dt>try:</dt>
+<dd>print(hexDict['UDP', srcPort])</dd>
+<dt>except KeyError:</dt>
+<dd>print(&quot;NerozpoznanĂ˝ port&quot;)</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd><dl class="first last docutils">
+<dt>try:</dt>
+<dd>print(hexDict['UDP', dstPort])</dd>
+<dt>except KeyError:</dt>
+<dd>print(&quot;NerozpoznanĂ˝ port&quot;)</dd>
+</dl>
+</dd>
+</dl>
+<p class="last">print(&quot;zdrojovĂ˝ port:&quot;, srcPort)
+print(&quot;cieÄľovĂ˝ port:&quot;, dstPort)</p>
+</dd>
+<dt>if icmp and ipv4:</dt>
+<dd><p class="first"># Analyza ICMP
+type = item[ipOffset]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 606)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(hexDict['ICMP', type])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 607)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>print(&quot;NerozpoznanĂ˝ typ&quot;)</dd>
+</dl>
+</dd>
+</dl>
+<p class="last">hexdump(item)
+print()</p>
+</dd>
+</dl>
+<p># Pocty uzlov
+print(&quot;IP adresy prijĂ­majĂşcich uzlov:&quot;)
+for i in prijimajuceUzly:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 616)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(&quot;.&quot;.join(&quot;{}&quot;.format(x) for x in i))</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 617)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p>print(&quot;Adresa uzla s najvĂ¤ÄŤĹˇĂ­m poÄŤtom prijatĂ˝ch paketov:&quot;)
+najpocetnejsi = prijimajuceUzly.most_common(1)
+print(&quot;.&quot;.join(&quot;{}&quot;.format(x) for x in najpocetnejsi[0][0]), &quot;{} paketov&quot;.format(najpocetnejsi[0][1]))</p>
+<p class="last"># zaciatokFunkcie(uloha3.__name__, False)</p>
+</dd>
+<dt>def konkretnePakety(rawPacketList, hexDict, zoznam):</dt>
+<dd><p class="first">'''
+Funkcia na vypis konkretnych ramcov z rawPacketList a cislovanych podla zoznamu. Tato funkcia je
+uprava funkcie uloha3 a uloha4 pre potreby vypisov paketov podla komunikacii pozadovana v bode 4 zadania.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokolov</td>
+</tr>
+<tr class="field"><th class="field-name">param zoznam:</th><td class="field-body">zoznam poradovych cisel ramcov komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 632)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(konkretnePakety.__name__, True)</p>
+<p>ramec = 0
+tftpPorty = []
+prijimajuceUzly = Counter()
+etherII = False</p>
+<dl class="docutils">
+<dt>for item in rawPacketList:</dt>
+<dd><p class="first">etherII = False</p>
+<p>sprava = &quot;rĂˇmec {}n&quot;.format(zoznam[ramec])</p>
+<p>ramec += 1</p>
+<p>dlzkaAPI = len(item)
+dlzkaMedium = dlzkaAPI + 4
+if dlzkaMedium &lt; 64:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 650)</p>
+Unexpected indentation.</div>
+<blockquote>
+dlzkaMedium = 64</blockquote>
+<p>sprava += &quot;DÄşĹľka rĂˇmca poskytnutĂˇ pcap API â€“ {} Bn&quot;.format(dlzkaAPI)
+sprava += &quot;DÄşĹľka rĂˇmca prenĂˇĹˇanĂ©ho po mĂ©diu â€“ {} Bn&quot;.format(dlzkaMedium)</p>
+<p>sprava += &quot;Typ rĂˇmca: &quot;
+if item[12] &lt; 0x06:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 657)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>if item[14] == 0xFF:</dt>
+<dd>sprava += &quot;Novell 802.3 RAWnIPXn&quot;</dd>
+<dt>elif item[14] == 0xAA:</dt>
+<dd><p class="first">sprava += &quot;IEEE 802.3 LLC + SNAPn&quot;
+num2021 = 256 * item[20] + item[21]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 663)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['Ethertypes', num2021])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 664)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇmy Ethertype 0x{:04x}n&quot;.format(num2021)</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd><p class="first">sprava += &quot;IEEE 802.3 LLCn&quot;
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 669)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;DSAP {}n&quot;.format(hexDict['SAPs', item[14]])
+sprava += &quot;SSAP {}n&quot;.format(hexDict['SAPs', item[15]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 671)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇmy SAP 0x{:02x}n&quot;.format(item[14])</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 673)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd>sprava += &quot;Ethernet IIn&quot;
+etherII = True</dd>
+</dl>
+<p>sprava += &quot;ZdrojovĂˇ MAC adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[6:12]) + &quot;n&quot;
+sprava += &quot;CieÄľovĂˇ MAC adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[0:6]) + &quot;n&quot;</p>
+<p>dlhOffset = 14
+# 14b pre DLH</p>
+<p>ipv4 = False
+arp = False</p>
+<p>ipOffset = 0
+tcp = False
+udp = False
+icmp = False</p>
+<dl class="last docutils">
+<dt>if etherII:</dt>
+<dd><p class="first">num1213 = 256 * item[12] + item[13]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 694)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['Ethertypes', num1213])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 695)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇmy Ethertype 0x{:04x}n&quot;.format(num1213)</dd>
+<dt>if num1213 == 0x0806:</dt>
+<dd><p class="first"># Toto je analyza ARP natvrdo. Co ak sa zmeni kod IPv4?
+arp = True
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 701)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['ARP', item[21]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 702)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇma ARP operĂˇcia {}n&quot;.format(item[21])</dd>
+</dl>
+<p>OPE = item[21]
+SHA = item[22:28]
+SPA = item[28:32]
+THA = item[32:38]
+TPA = item[38:42]</p>
+<dl class="docutils">
+<dt>if ramec == 1 and OPE == 1:</dt>
+<dd><p class="first"># Ak je ARP Request ramec prvym ramcom komunikacie, vypise hlavicku
+sprava2 = &quot;&quot;
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 715)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava2 += &quot;ARP {}, &quot;.format(hexDict['ARP', item[21]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 716)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>except KeyError:</dt>
+<dd>sprava2 += &quot;NeznĂˇma ARP operĂˇcia {}, &quot;.format(item[21])</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 718)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p>sprava2 += &quot;IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[38:42]) + &quot;, &quot;
+# sprava2 += &quot;MAC adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[32:38]) + &quot;n&quot;
+sprava2 += &quot;MAC adresa: ?? ?? ?? ?? ?? ??n&quot;</p>
+<p class="last">sprava2 += &quot;ZdrojovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[28:32]) + &quot;, &quot;
+sprava2 += &quot;CieÄľovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[38:42]) + &quot;n&quot;
+sprava = sprava2 + sprava</p>
+</dd>
+<dt>if OPE == 2:</dt>
+<dd><p class="first"># Ak je ramec ARP Reply, vypise hlavicku
+sprava2 = &quot;&quot;
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 730)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava2 += &quot;ARP {}, &quot;.format(hexDict['ARP', item[21]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 731)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>except KeyError:</dt>
+<dd>sprava2 += &quot;NeznĂˇma ARP operĂˇcia {}, &quot;.format(item[21])</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 733)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p>sprava2 += &quot;IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[28:32]) + &quot;, &quot;
+sprava2 += &quot;MAC adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[32:38]) + &quot;n&quot;</p>
+<p class="last">sprava2 += &quot;ZdrojovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[28:32]) + &quot;, &quot;
+sprava2 += &quot;CieÄľovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[38:42]) + &quot;n&quot;
+sprava = sprava2 + sprava</p>
+</dd>
+</dl>
+<p class="last">print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</p>
+</dd>
+<dt>if num1213 == 0x0800:</dt>
+<dd><p class="first"># Toto je analyza IPv4 natvrdo. Co ak sa zmeni kod IPv4?
+ipv4 = True
+sprava += &quot;zdrojovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[26:30]) + &quot;n&quot;
+sprava += &quot;cieÄľovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[30:34]) + &quot;n&quot;</p>
+<dl class="docutils">
+<dt>if prijimajuceUzly[item[30:34]] == 0:</dt>
+<dd>prijimajuceUzly[item[30:34]] = 1</dd>
+<dt>else:</dt>
+<dd>prijimajuceUzly[item[30:34]] += 1</dd>
+<dt>try:</dt>
+<dd>sprava += &quot;{}n&quot;.format(hexDict['IP', item[23]])</dd>
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;Neznamy IP protokol {}n&quot;.format(item[23])</dd>
+<dt>if item[23] == 0x06:</dt>
+<dd># Ak je to TCP tak sa bude pokracovat
+tcp = True</dd>
+<dt>if item[23] == 0x11:</dt>
+<dd>udp = True</dd>
+<dt>if item[23] == 0x01:</dt>
+<dd>icmp = True</dd>
+</dl>
+<p class="last">ipOffset = dlhOffset + (item[14] % 16) * 4</p>
+</dd>
+</dl>
+</dd>
+<dt>if tcp and ipv4:</dt>
+<dd><p class="first">srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
+dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]</p>
+<p>mensi = min(srcPort, dstPort)</p>
+<dl class="docutils">
+<dt>try:</dt>
+<dd>sprava += &quot;{}n&quot;.format(hexDict['TCP', mensi])</dd>
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NerozpoznanĂ˝ portn&quot;</dd>
+</dl>
+<p>sprava += &quot;zdrojovĂ˝ port: {}n&quot;.format(srcPort)
+sprava += &quot;cieÄľovĂ˝ port: {}n&quot;.format(dstPort)</p>
+<p class="last">print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</p>
+</dd>
+<dt>if icmp and ipv4:</dt>
+<dd><p class="first">type = item[ipOffset]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 790)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['ICMP', type])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 791)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NerozpoznanĂ˝ typn&quot;</dd>
+</dl>
+<p class="last">print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="last"># zaciatokFunkcie(konkretnePakety.__name__, False)</p>
+</dd>
+<dt>def redukciaAvypis(rawPacketList, hexDict, zoznam):</dt>
+<dd><p class="first">'''
+Funkcia na zmensenie zoznamu paketov a zoznamu poradovych cisel. Pre potreby splnenia
+poziadavky bodu 4 zadania, kedy vypisujeme len prvu uplnu a prvu neuplnu komunikaciu
+a zaroven ak ma komunikacia viac ako 20 ramcov tak len prvych 10 a poslednych 10. Teda
+ak ma komunikacia nad 20 ramcov, zredukujeme ju na 20 ramcov, ak ma 20 a menej, vypiseme ju celu.
+Vypis pouziva funkcii konkretnePakety.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokolov</td>
+</tr>
+<tr class="field"><th class="field-name">param zoznam:</th><td class="field-body">zoznam poradovych cisel ramcov komunikacie</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 812)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+rawPacLen = len(rawPacketList)</p>
+<dl class="last docutils">
+<dt>if rawPacLen &gt; 20:</dt>
+<dd><p class="first"># Zredokovanie komunikacie na 20 ramcov pokial ma cela komunikacia nad 20 ramcov
+pacFront = [x for x in rawPacketList[:10]]
+pacBack = [x for x in rawPacketList[-10:]]</p>
+<p>zoznamFront = [x for x in zoznam[:10]]
+zoznamBack = [x for x in zoznam[-10:]]</p>
+<p>pacSpolu = pacFront + pacBack
+zoznamSpolu = zoznamFront + zoznamBack</p>
+<p class="last">konkretnePakety(pacSpolu, hexDict, zoznamSpolu)</p>
+</dd>
+<dt>else:</dt>
+<dd># Vypis celej komunikacie, ak ma 20 a menej ramcov
+konkretnePakety(rawPacketList, hexDict, zoznam)</dd>
+</dl>
+</dd>
+<dt>def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):</dt>
+<dd><p class="first">'''
+Funkcia na filtrovanie ucelenych komunikacii. Komunikacie zoskupi do slovnika a vypise funkciou
+redukciaAvypis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov celeho suboru</td>
+</tr>
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokolov</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">param zadanyPort:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">sledovany port alebo protokol</td>
+</tr>
+<tr class="field"><th class="field-name">param ibaPrva:</th><td class="field-body">boolean ci sledujeme iba prvu uplnu a prvu neuplnu komunikaciu, alebo vsetky</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 841)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(komunikacie.__name__, True)</p>
+<p>ramec = 1</p>
+<p>etherII = False
+vypisICMP = False
+vypisTCP = False
+vypisARP = False</p>
+<p>komunikacieDict = {}
+arpDict = {}</p>
+<dl class="docutils">
+<dt>for item in rawPacketList:</dt>
+<dd><p class="first">etherII = False</p>
+<dl class="docutils">
+<dt>if item[12] &lt; 0x06:</dt>
+<dd><dl class="first last docutils">
+<dt>if item[14] == 0xFF:</dt>
+<dd>pass</dd>
+<dt>elif item[14] == 0xAA:</dt>
+<dd>pass</dd>
+<dt>else:</dt>
+<dd>pass</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd>etherII = True</dd>
+</dl>
+<p>dlhOffset = 14
+# 14b pre DLH</p>
+<p>ipv4 = False
+arp = False</p>
+<p>ipOffset = 0
+tcp = False
+udp = False
+icmp = False</p>
+<dl class="docutils">
+<dt>if etherII:</dt>
+<dd><p class="first">num1213 = 256 * item[12] + item[13]</p>
+<dl class="last docutils">
+<dt>if num1213 == 0x0800:</dt>
+<dd><p class="first"># Toto je analyza IPv4 natvrdo, podla cisla protokolu.
+ipv4 = True</p>
+<dl class="docutils">
+<dt>if item[23] == 0x01 and zadanyPort == 0x01:</dt>
+<dd># Ak je to ICMP a zaroven sledujem ICMP, tak sa bude pokracovat v analyze ICMP
+icmp = True</dd>
+<dt>elif item[23] == 0x06 and zadanyPort != 0x01 and zadanyPort != 0x0806:</dt>
+<dd># Ak je to TCP a zaroven nesledujem ICMP ani ARP, tak sa bude pokracovat v analyze TCP
+tcp = True</dd>
+</dl>
+<p class="last">ipOffset = dlhOffset + (item[14] % 16) * 4</p>
+</dd>
+<dt>if num1213 == 0x0806 and zadanyPort == 0x0806:</dt>
+<dd># Toto je analyza ARP natvrdo, podla cisla protokolu
+arp = True
+vypisARP = True</dd>
+</dl>
+</dd>
+<dt>if tcp and ipv4:</dt>
+<dd><p class="first"># Ak je ramec TCP a sledujeme TCP ramce, prida sa do slovnika</p>
+<p>srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
+dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]
+porty = [srcPort, dstPort]
+porty.sort()
+flag = item[ipOffset + 13]</p>
+<p>vypisTCP = True</p>
+<dl class="last docutils">
+<dt>if zadanyPort == None:</dt>
+<dd><dl class="first last docutils">
+<dt>if (porty[0], porty[1]) not in komunikacieDict:</dt>
+<dd>komunikacieDict[porty[0], porty[1]] = [(ramec, flag)]           # poradove cislo ramca</dd>
+<dt>else:</dt>
+<dd>komunikacieDict[porty[0], porty[1]].append((ramec, flag))       # poradove cislo ramca</dd>
+</dl>
+</dd>
+<dt>elif porty[0] == zadanyPort:</dt>
+<dd><dl class="first last docutils">
+<dt>if (porty[0], porty[1]) not in komunikacieDict:</dt>
+<dd>komunikacieDict[porty[0], porty[1]] = [(ramec, flag)]           # poradove cislo ramca</dd>
+<dt>else:</dt>
+<dd>komunikacieDict[porty[0], porty[1]].append((ramec, flag))       # poradove cislo ramca</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if icmp and ipv4:</dt>
+<dd><p class="first"># Ak je ramec ICMP a sledujeme ICMP ramce, prida sa do slovnika</p>
+<p>type = item[ipOffset]</p>
+<p>srcIP = item[26:30]
+dstIP = item[30:34]</p>
+<p>vypisICMP = True</p>
+<p class="last">komunikacieDict[ramec] = (srcIP, dstIP, type)</p>
+</dd>
+<dt>if arp:</dt>
+<dd><p class="first"># Ak je ramec ARP a sledujeme ARP ramce, prida sa do slovnika</p>
+<p>OPE = item[21]
+SHA = item[22:28]
+SPA = item[28:32]
+THA = item[32:38]
+TPA = item[38:42]</p>
+<p class="last">komunikacieDict[ramec] = (OPE, SHA, SPA, THA, TPA)</p>
+</dd>
+</dl>
+<p class="last">ramec += 1</p>
+</dd>
+<dt>if vypisTCP:</dt>
+<dd><p class="first"># Delenie TCP ramcov do komunikacii</p>
+<p># print(&quot;Teraz&quot;)
+otvorena = False
+zatvorena = False
+vsetky = []</p>
+<p>prvaUplna = None
+prvaUplnaSubList = []
+prvaUplnaSubListMap = None</p>
+<p>prvaNeuplna = None
+prvaNeuplnaSubList = []
+prvaNeuplnaSubListMap = None</p>
+<p>booleanUp = False
+booleanNeup = False</p>
+<dl class="docutils">
+<dt>for k in komunikacieDict:</dt>
+<dd><p class="first"># Prechod cez vsetky ramce slovnika
+otvorena = False
+zatvorena = False</p>
+<dl class="last docutils">
+<dt>if len(komunikacieDict[k]) &gt;= 3:</dt>
+<dd><p class="first">flag_z0 = komunikacieDict[k][0][1]
+flag_z1 = komunikacieDict[k][1][1]
+flag_z2 = komunikacieDict[k][2][1]</p>
+<dl class="last docutils">
+<dt>if otvorenieKomunikacie(flag_z0, flag_z1, flag_z2):</dt>
+<dd># print(&quot;Komunikacia otvorena&quot;)
+otvorena = True</dd>
+<dt>else:</dt>
+<dd># print(&quot;--------------------Neotvorena komunikacia&quot;)
+pass</dd>
+</dl>
+</dd>
+<dt>if len(komunikacieDict[k]) &gt;= 4:</dt>
+<dd><p class="first">flag_k1 = komunikacieDict[k][-1][1]
+flag_k2 = komunikacieDict[k][-2][1]
+flag_k3 = komunikacieDict[k][-3][1]
+flag_k4 = komunikacieDict[k][-4][1]
+if zatvorenieKomunikacie(flag_k1, flag_k2, flag_k3, flag_k4, komunikacieDict[k]):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 988)</p>
+Unexpected indentation.</div>
+<blockquote>
+# print(&quot;Komunikacia zatvorena&quot;)
+zatvorena = True</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 990)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>else:</dt>
+<dd># print(&quot;--------------------Nezatvorena komunikacia&quot;)
+pass</dd>
+<dt>if ibaPrva and otvorena and zatvorena and not booleanUp:</dt>
+<dd><p class="first"># Ulozenie prvej uplnej komunikacie
+prvaUplna = [i[0] for i in komunikacieDict[k]]
+for i in prvaUplna:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 998)</p>
+Unexpected indentation.</div>
+<blockquote>
+prvaUplnaSubList.append(rawPacketList[i - 1])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 999)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">booleanUp = True
+prvaUplnaSubListMap = prvaUplna</p>
+</dd>
+<dt>elif ibaPrva and otvorena and zatvorena == False and not booleanNeup:</dt>
+<dd><p class="first"># Ulozenie prvej nekompletnej komunikacie
+prvaNeuplna = [i[0] for i in komunikacieDict[k]]
+for i in prvaNeuplna:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1005)</p>
+Unexpected indentation.</div>
+<blockquote>
+prvaNeuplnaSubList.append(rawPacketList[i - 1])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1006)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">booleanNeup = True
+prvaNeuplnaSubListMap = prvaNeuplna</p>
+</dd>
+<dt>elif not ibaPrva:</dt>
+<dd>pass</dd>
+<dt>if booleanUp and booleanNeup:</dt>
+<dd><p class="first"># Ak bola najdena prva uplna a prva neuplna komunikacia skor ako sa
+# zanalyzoval cely slovnik, komunikacie sa vypisu a funkcia konci</p>
+<p class="last"># return prvaUplna, prvaNeuplna
+print(&quot;Prva uplna (otvorena a zatvorena) komunikacia&quot;)
+# konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+redukciaAvypis(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+# print(len(prvaUplnaSubList))
+print(&quot;Prva neuplna (otvorena a nezatvorena) komunikacia&quot;)
+# konkretnePakety(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
+redukciaAvypis(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
+return</p>
+</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd>pass
+# print(&quot;Prilis kratka komunikacia&quot;)</dd>
+</dl>
+</dd>
+<dt>if ibaPrva:</dt>
+<dd><p class="first"># Ak sa zanalyzoval cely slovnik, znamena to, ze uplna, neuplna, alebo obe komunikacie sa nenasli.
+# Ak sa nejaka nasla, tak sa vypise komunikacia, ak sa nenasla, vypise sa hlasenie.
+if prvaUplna == None:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1032)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(&quot;Ziadna uplna (otvorena a zatvorena) komunikacia nebola najdena&quot;)</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1033)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>else:</dt>
+<dd>print(&quot;Prva uplna (otvorena a zatvorena) komunikacia&quot;)
+# konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
+redukciaAvypis(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)</dd>
+<dt>if prvaNeuplna == None:</dt>
+<dd>print(&quot;Ziadna neuplna (otvorena a nezatvorena) komunikacia nebola najdena&quot;)</dd>
+<dt>else:</dt>
+<dd>print(&quot;Prva neuplna (otvorena a nezatvorena) komunikacia&quot;)
+# konkretnePakety(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)
+redukciaAvypis(prvaNeuplnaSubList, hexDict, prvaNeuplnaSubListMap)</dd>
+</dl>
+</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1043)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p class="last">return</p>
+</dd>
+<dt>if vypisICMP:</dt>
+<dd><p class="first"># Vypis parov ICMP echo-reply</p>
+<p>ipSrc1, ipDst1, ipSrc2, ipDst2, type1, type2, k1, k2 = None, None, None, None, None, None, None, None
+b = True
+cislo = 1</p>
+<dl class="last docutils">
+<dt>for k in komunikacieDict:</dt>
+<dd><dl class="first last docutils">
+<dt>if b and komunikacieDict[k][2] == 8:</dt>
+<dd># Prve v komunikacii je echo
+ipSrc1 = komunikacieDict[k][0]
+ipDst1 = komunikacieDict[k][1]
+type1 = komunikacieDict[k][2]
+k1 = k
+b = False</dd>
+<dt>else:</dt>
+<dd><p class="first"># Druhe v komunikacii je reply
+ipSrc2 = komunikacieDict[k][0]
+ipDst2 = komunikacieDict[k][1]
+type2 = komunikacieDict[k][2]
+k2 = k
+b = True
+# print(&quot;2&quot;, ipSrc2, ipDst2, type2)
+if (type1 == 8 and type2 == 0 and ipSrc1 == ipDst2 and ipSrc2 == ipDst1):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1069)</p>
+Unexpected indentation.</div>
+<blockquote class="last">
+<p># Vypise sa komunikacia ak pakety tvoria par
+print(&quot;Komunikacia c. {}&quot;.format(cislo))
+cislo += 1
+rawPacketSubList = []
+rawPacketSubList.append(rawPacketList[k1-1])
+rawPacketSubList.append(rawPacketList[k2-1])
+zoznam = [k1, k2]</p>
+<p>konkretnePakety(rawPacketSubList, hexDict, zoznam)</p>
+</blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>if vypisARP:</dt>
+<dd><p class="first"># Vypis ARP komunikacii
+komunikacia = 1</p>
+<dl class="last docutils">
+<dt>for a in komunikacieDict:</dt>
+<dd><p class="first"># print(a, komunikacieDict[a])
+if komunikacieDict[a][0] == 1:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1086)</p>
+Unexpected indentation.</div>
+<blockquote>
+<p># Ak je komunikacia request, prida sa do slovnika</p>
+<p>RSHA = komunikacieDict[a][1]
+RSPA = komunikacieDict[a][2]
+RTHA = komunikacieDict[a][3]
+RTPA = komunikacieDict[a][4]</p>
+<dl class="docutils">
+<dt>if (RSHA, RSPA, RTPA) not in arpDict:</dt>
+<dd>arpDict[RSHA, RSPA, RTPA] = [a]</dd>
+<dt>else:</dt>
+<dd>arpDict[RSHA, RSPA, RTPA].append(a)</dd>
+</dl>
+</blockquote>
+<dl class="last docutils">
+<dt>elif komunikacieDict[a][0] == 2:</dt>
+<dd><p class="first"># Ak je komunikacia reply, pokusim sa najst jej v slovniku par</p>
+<p>PSHA = komunikacieDict[a][1]
+PSPA = komunikacieDict[a][2]
+PTHA = komunikacieDict[a][3]
+PTPA = komunikacieDict[a][4]
+if (PTHA, PTPA, PSPA) in arpDict:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1106)</p>
+Unexpected indentation.</div>
+<blockquote>
+<p># Ak v slovniku existuje pre Reply parik s Request, vypise sa komunikacia a vymaze sa zo slovnika
+arpDict[PTHA, PTPA, PSPA].append(a)
+print(&quot;Komunikacia c. {}&quot;.format(komunikacia))
+komunikacia += 1
+rawPacketSubList2 = []
+for i in arpDict[PTHA, PTPA, PSPA]:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1112)</p>
+Unexpected indentation.</div>
+<blockquote>
+rawPacketSubList2.append(rawPacketList[i-1])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1113)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p>konkretnePakety(rawPacketSubList2, hexDict, arpDict[PTHA, PTPA, PSPA])
+arpDict.pop((PTHA, PTPA, PSPA), None)</p>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1115)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>else:</dt>
+<dd># Ak pre Reply neexistuje v slovniku Request, vypise sa ako samostatny Reply
+print(&quot;Komunikacia c. {} (iba samostatny reply)&quot;.format(komunikacia))
+komunikacia += 1
+rawPacketSubList2 = []
+rawPacketSubList2.append(rawPacketList[a-1])
+konkretnePakety(rawPacketSubList2, hexDict, [a])</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>for ad in arpDict:</dt>
+<dd><p class="first"># Ak komunikacie obsahovali len Requesty, komunikacie sa vypisu ako neuplne</p>
+<p>print(&quot;Komunikacia c. {} (neuplna)&quot;.format(komunikacia))
+komunikacia += 1
+rawPacketSubList2 = []
+for i in arpDict[ad]:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1131)</p>
+Unexpected indentation.</div>
+<blockquote>
+rawPacketSubList2.append(rawPacketList[i - 1])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1132)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<p class="last">konkretnePakety(rawPacketSubList2, hexDict, arpDict[ad])</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="last"># zaciatokFunkcie(komunikacie.__name__, False)</p>
+</dd>
+<dt>def uloha4(rawPacketList, hexDict, prepinac):</dt>
+<dd><p class="first">'''
+Funkcia vypisuje ramce konkretneho typu. Urcuje sa protokol na 2-4 vrstve
++ pri TCP a UDP aj port, pri ICMP a ARP aj typy spravy. Vypisuju sa vsetky
+pakety daneho typu. Napriklad sa zo suboru vypisu len vsetky HTTP pakety
+a ziadne ine. Funkcia priamo v zadani ziadana nie je, pridavam ju len pre moznost filtrovania.
+Tato funkcia sa pouziva na vypis TFTP komunikacii.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">param rawPacketList:</th></tr>
+<tr class="field"><td>&nbsp;</td><td class="field-body">zoznam bajtov celeho suboru</td>
+</tr>
+<tr class="field"><th class="field-name">param hexDict:</th><td class="field-body">slovnik protokolov</td>
+</tr>
+<tr class="field"><th class="field-name">param prepinac:</th><td class="field-body">jedno pismeno a-i urcujuce co sa bude vypisovat</td>
+</tr>
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1148)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(uloha4.__name__, True)</p>
+<p>ramec = 1
+tftpPorty = []
+prijimajuceUzly = Counter()
+etherII = False</p>
+<dl class="docutils">
+<dt>for item in rawPacketList:</dt>
+<dd><p class="first">etherII = False</p>
+<p>sprava = &quot;rĂˇmec {}n&quot;.format(ramec)</p>
+<p>ramec += 1</p>
+<p>dlzkaAPI = len(item)
+dlzkaMedium = dlzkaAPI + 4
+if dlzkaMedium &lt; 64:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1166)</p>
+Unexpected indentation.</div>
+<blockquote>
+dlzkaMedium = 64</blockquote>
+<p>sprava += &quot;DÄşĹľka rĂˇmca poskytnutĂˇ pcap API â€“ {} Bn&quot;.format(dlzkaAPI)
+sprava += &quot;DÄşĹľka rĂˇmca prenĂˇĹˇanĂ©ho po mĂ©diu â€“ {} Bn&quot;.format(dlzkaMedium)</p>
+<p>sprava += &quot;Typ rĂˇmca: &quot;
+if item[12] &lt; 0x06:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1173)</p>
+Unexpected indentation.</div>
+<blockquote>
+<dl class="docutils">
+<dt>if item[14] == 0xFF:</dt>
+<dd>sprava += &quot;Novell 802.3 RAWnIPXn&quot;</dd>
+<dt>elif item[14] == 0xAA:</dt>
+<dd><p class="first">sprava += &quot;IEEE 802.3 LLC + SNAPn&quot;
+num2021 = 256 * item[20] + item[21]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1179)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['Ethertypes', num2021])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1180)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇmy Ethertype 0x{:04x}n&quot;.format(num2021)</dd>
+</dl>
+</dd>
+<dt>else:</dt>
+<dd><p class="first">sprava += &quot;IEEE 802.3 LLCn&quot;
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1185)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;DSAP {}n&quot;.format(hexDict['SAPs', item[14]])
+sprava += &quot;SSAP {}n&quot;.format(hexDict['SAPs', item[15]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1187)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇmy SAP 0x{:02x}n&quot;.format(item[14])</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1189)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd>sprava += &quot;Ethernet IIn&quot;
+etherII = True</dd>
+</dl>
+<p>sprava += &quot;ZdrojovĂˇ MAC adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[6:12]) + &quot;n&quot;
+sprava += &quot;CieÄľovĂˇ MAC adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[0:6]) + &quot;n&quot;</p>
+<p>dlhOffset = 14
+# 14b pre DLH</p>
+<p>ipv4 = False
+arp = False</p>
+<p>ipOffset = 0
+tcp = False
+udp = False
+icmp = False</p>
+<dl class="last docutils">
+<dt>if etherII:</dt>
+<dd><p class="first">num1213 = 256 * item[12] + item[13]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1210)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['Ethertypes', num1213])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1211)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇmy Ethertype 0x{:04x}n&quot;.format(num1213)</dd>
+<dt>if num1213 == 0x0806:</dt>
+<dd><p class="first"># Toto je analyza ARP natvrdo, podla cisla protokolu
+arp = True
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1217)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['ARP', item[21]])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1218)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NeznĂˇma ARP operĂˇcia {}n&quot;.format(item[21])</dd>
+</dl>
+<p>sprava += &quot;zdrojovĂˇ hardvĂ©rovĂˇ adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[22:28]) + &quot;n&quot;
+sprava += &quot;zdrojovĂˇ protokolovĂˇ adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[28:32]) + &quot;n&quot;
+sprava += &quot;cieÄľovĂˇ hardvĂ©rovĂˇ adresa: &quot; + &quot; &quot;.join(&quot;{:02X}&quot;.format(x) for x in item[32:38]) + &quot;n&quot;
+sprava += &quot;cieÄľovĂˇ protokolovĂˇ adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[38:42]) + &quot;n&quot;</p>
+<dl class="last docutils">
+<dt>if prepinac == &quot;i&quot;:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+</dl>
+</dd>
+<dt>if num1213 == 0x0800:</dt>
+<dd><p class="first"># Toto je analyza IPv4 natvrdo, podla cisla protokolu
+ipv4 = True
+sprava += &quot;zdrojovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[26:30]) + &quot;n&quot;
+sprava += &quot;cieÄľovĂˇ IP adresa: &quot; + &quot;.&quot;.join(&quot;{}&quot;.format(x) for x in item[30:34]) + &quot;n&quot;
+# prijimajuceUzly.append(item[30:34])
+if prijimajuceUzly[item[30:34]] == 0:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1238)</p>
+Unexpected indentation.</div>
+<blockquote>
+prijimajuceUzly[item[30:34]] = 1</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1239)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd>prijimajuceUzly[item[30:34]] += 1</dd>
+<dt>try:</dt>
+<dd>sprava += &quot;{}n&quot;.format(hexDict['IP', item[23]])</dd>
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;Neznamy IP protokol {}n&quot;.format(item[23])</dd>
+<dt>if item[23] == 0x06:</dt>
+<dd># Ak je to TCP tak sa bude pokracovat vypisom TCP
+tcp = True</dd>
+<dt>if item[23] == 0x11:</dt>
+<dd># Ak je to UDP tak sa bude pokracovat vypisom UDP
+udp = True</dd>
+<dt>if item[23] == 0x01:</dt>
+<dd># Ak je to ICMP tak sa bude pokracovat vypisom ICMP
+icmp = True</dd>
+</dl>
+<p class="last">ipOffset = dlhOffset + (item[14] % 16) * 4</p>
+</dd>
+</dl>
+</dd>
+<dt>if tcp and ipv4:</dt>
+<dd><p class="first"># Vypis konkretnych TCP paketov podla porty zvoleneho v moznostiach a-f</p>
+<p>srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
+dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]</p>
+<p>mensi = min(srcPort, dstPort)</p>
+<dl class="docutils">
+<dt>try:</dt>
+<dd>sprava += &quot;{}n&quot;.format(hexDict['TCP', mensi])</dd>
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NerozpoznanĂ˝ portn&quot;</dd>
+</dl>
+<p>sprava += &quot;zdrojovĂ˝ port: {}n&quot;.format(srcPort)
+sprava += &quot;cieÄľovĂ˝ port: {}n&quot;.format(dstPort)</p>
+<dl class="last docutils">
+<dt>if prepinac == &quot;a&quot; and mensi == 0x50:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+<dt>if prepinac == &quot;b&quot; and mensi == 0x1BB:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+<dt>if prepinac == &quot;c&quot; and mensi == 0x17:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+<dt>if prepinac == &quot;d&quot; and mensi == 0x16:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+<dt>if prepinac == &quot;e&quot; and mensi == 0x15:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+<dt>if prepinac == &quot;f&quot; and mensi == 0x14:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+</dl>
+</dd>
+<dt>if udp and ipv4:</dt>
+<dd><p class="first"># Vypis TFTP komunikacie
+srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
+dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]</p>
+<p>porty = [srcPort, dstPort]
+porty.sort()</p>
+<dl class="docutils">
+<dt>if dstPort == 0x45:</dt>
+<dd>tftpPorty.append(porty)</dd>
+<dt>else:</dt>
+<dd><dl class="first last docutils">
+<dt>for zaznam in tftpPorty:</dt>
+<dd><dl class="first last docutils">
+<dt>if dstPort in zaznam and srcPort not in zaznam:</dt>
+<dd><dl class="first docutils">
+<dt>if dstPort == zaznam[0] and zaznam[1] == 0x45:</dt>
+<dd>zaznam[1] = srcPort</dd>
+<dt>elif zaznam[0] == 0x45:</dt>
+<dd>zaznam[0] = srcPort</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1323)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p class="last">zaznam.sort()</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>mensi = min(srcPort, dstPort)</p>
+<dl class="docutils">
+<dt>try:</dt>
+<dd>sprava += &quot;{}n&quot;.format(hexDict['UDP', mensi])</dd>
+<dt>except KeyError:</dt>
+<dd><dl class="first last docutils">
+<dt>if porty in tftpPorty:</dt>
+<dd>sprava += &quot;TFTPn&quot;</dd>
+<dt>else:</dt>
+<dd>sprava += &quot;NerozpoznanĂ˝ portn&quot;</dd>
+</dl>
+</dd>
+</dl>
+<p>sprava += &quot;zdrojovĂ˝ port: {}n&quot;.format(srcPort)
+sprava += &quot;cieÄľovĂ˝ port: {}n&quot;.format(dstPort)</p>
+<dl class="last docutils">
+<dt>if prepinac == &quot;g&quot; and porty in tftpPorty:</dt>
+<dd><dl class="first docutils">
+<dt>if dstPort == 0x45:</dt>
+<dd>sprava = &quot;Komunikacia {}n&quot;.format(tftpPorty.index(porty) + 1) + sprava</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1341)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p class="last">print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</p>
+</dd>
+</dl>
+</dd>
+<dt>if icmp and ipv4:</dt>
+<dd><p class="first"># Vypis ICMP ramcov</p>
+<p>type = item[ipOffset]
+try:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1350)</p>
+Unexpected indentation.</div>
+<blockquote>
+sprava += &quot;{}n&quot;.format(hexDict['ICMP', type])</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1351)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="last docutils">
+<dt>except KeyError:</dt>
+<dd>sprava += &quot;NerozpoznanĂ˝ typn&quot;</dd>
+<dt>if prepinac == &quot;h&quot;:</dt>
+<dd>print(sprava, end=&quot;&quot;)
+hexdump(item)
+print()</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="last"># zaciatokFunkcie(uloha4.__name__, False)</p>
+</dd>
+<dt>def main():</dt>
+<dd><p class="first">'''
+Hlavna funkcia programu. V slucke sa funkciou vyziada vyber suboru, otvori sa pcap subor
+a vyziada sa akcia dalsou funkciou. Na zaklade vyberu akcie sa zavola konkretna funkcia, ktora danu
+funkcionalitu poskytuje. Vypis je presmerovany do externeho textoveho suboru, ktory sa nachadza
+v priecinku so zdrojovym kodom. Zakomentovana je funkcionalita merania casu jednotlivych operacii.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">return:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1369)</p>
+Field list ends without a blank line; unexpected unindent.</div>
+<p>'''
+# zaciatokFunkcie(main.__name__, True)</p>
+<p>origVystup = sys.stdout</p>
+<p>filename = cestakSuboru()</p>
+<p>while filename != None:</p>
+<blockquote>
+<p>print(&quot;Bola zvolena cesta &quot;, filename)</p>
+<p># casCitanieZac = datetime.datetime.now()
+packets = rdpcap(filename)
+# casCitanieKon = datetime.datetime.now()
+# print(&quot;Citanie suboru zabralo {} ms&quot;.format((casCitanieKon - casCitanieZac).total_seconds() * 1000))</p>
+<p># casPrepisuZac = datetime.datetime.now()
+rawPacketList = [raw(p) for p in packets]
+# casPrepisuKon = datetime.datetime.now()
+# print(&quot;Prepis suboru zabral {} ms&quot;.format((casPrepisuKon - casPrepisuZac).total_seconds() * 1000))</p>
+<p># casHexDictZac = datetime.datetime.now()
+hexDict = protokolSubor()
+# casHexDictKon = datetime.datetime.now()
+# print(&quot;Vytvaranie slovnika protokolov zabralo {} ms&quot;.format((casHexDictKon - casHexDictZac).total_seconds() * 1000))</p>
+<p>volby = riadic()
+while(volby != &quot;0&quot;):</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1397)</p>
+Unexpected indentation.</div>
+<blockquote>
+<p>print(&quot;Bola zvolena moznost&quot;, volby)
+outputFile = open(cesta('vystup.txt'), 'w')
+sys.stdout = origVystup</p>
+<dl class="docutils">
+<dt>if volby == &quot;1&quot;:</dt>
+<dd>sys.stdout = outputFile
+# casU1Zac = datetime.datetime.now()
+uloha1(rawPacketList)
+# casU1Kon = datetime.datetime.now()
+sys.stdout = origVystup
+# print(&quot;Funkcia uloha1() zabrala {} ms&quot;.format((casU1Kon - casU1Zac).total_seconds() * 1000))</dd>
+<dt>if volby == &quot;3&quot;:</dt>
+<dd>sys.stdout = outputFile
+# casU3Zac = datetime.datetime.now()
+uloha3(rawPacketList, hexDict)
+# casU3Kon = datetime.datetime.now()
+sys.stdout = origVystup
+# print(&quot;Funkcia uloha3() zabrala {} ms&quot;.format((casU3Kon - casU3Zac).total_seconds() * 1000))</dd>
+<dt>if volby[0] == &quot;4&quot; and volby[2] == &quot;0&quot;:</dt>
+<dd>sys.stdout = outputFile
+# casU4Zac = datetime.datetime.now()
+uloha4(rawPacketList, hexDict, volby[1])
+# casU4Kon = datetime.datetime.now()
+sys.stdout = origVystup
+# print(&quot;Funkcia uloha4() zabrala {} ms&quot;.format((casU4Kon - casU4Zac).total_seconds() * 1000))</dd>
+<dt>elif volby[0] == &quot;4&quot; and volby[2] == &quot;1&quot;:</dt>
+<dd><p class="first"># casU4KomZac = datetime.datetime.now()
+port = zistiPortProtokolu(hexDict, volby[1])
+if volby[1] == &quot;g&quot;:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1428)</p>
+Unexpected indentation.</div>
+<blockquote>
+print(&quot;UDP nenadvazuje spojenia, preto nie je mozne vypisat komunikaciu ako pri TCP. Zvolte 4 g 0&quot;)</blockquote>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1429)</p>
+Block quote ends without a blank line; unexpected unindent.</div>
+<dl class="docutils">
+<dt>else:</dt>
+<dd>sys.stdout = outputFile
+komunikacie(rawPacketList, hexDict, port, True)</dd>
+</dl>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">C:\Users\PeterSmrecek\Disk Google (xsmrecek&#64;stuba.sk)\Programovanie\20-21\PKS\Zadanie1\PKS Zadanie 1 - Python\Smrecek-Zadanie1-Cele.py</tt>, line 1432)</p>
+Definition list ends without a blank line; unexpected unindent.</div>
+<p class="last"># casU4KomKon = datetime.datetime.now()
+sys.stdout = origVystup
+# print(&quot;Funkcia komunikacie() zabrala {} ms&quot;.format((casU4KomKon - casU4KomZac).total_seconds() * 1000))</p>
+</dd>
+</dl>
+<p>outputFile.close()</p>
+<p>volby = riadic()</p>
+</blockquote>
+<p>filename = cestakSuboru()</p>
+</blockquote>
+<p class="last"># zaciatokFunkcie(main.__name__, False)</p>
+</dd>
+<dt>if __name__ == &quot;__main__&quot;:</dt>
+<dd>main()</dd>
+</dl>
+</div>
+</body>
+</html>
