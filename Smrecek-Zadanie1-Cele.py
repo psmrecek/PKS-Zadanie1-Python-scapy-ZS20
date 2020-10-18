@@ -1,50 +1,82 @@
+# -----------------------------------------------------------
+# PKS - Zadanie 1 - Finalne odovzdanie
+# Funkcie 1-4 vypracovane podla zadania.
+# ZS 2020
+#
+# Peter Smreček
+# email xsmrecek@stuba.sk
+# AIS ID 103130
+# -----------------------------------------------------------
+
 from scapy.all import *
 import os
 import sys
 import datetime
 from collections import Counter
 
-def zaciatokFunkcie(funkcia, zac):
-    text = ""
-    if zac == True:
-        text = "# Zaciatok funkcie {} #".format(funkcia)
-    else:
-        text = "# Koniec funkcie {} #".format(funkcia)
-
-    ram = "#" * (len(text))
-
-    print(ram)
-    print(text)
-    print(ram)
-
-def vlastnyHexdump(bytes):
-    n = 0
-    for a in bytes:
-        n += 1
-        if n % 16 == 0:
-            print("{:02x}".format(a))
-        elif n % 8 == 0:
-            print("{:02x}".format(a), end="  ")
-        else:
-            print("{:02x}".format(a), end=" ")
-    n = 0
+# def zaciatokFunkcie(funkcia, zac):
+#     '''
+#     Pomocna debuggovacia funkcia ktora vypise ktora funkcia bola prave spustena a ukoncena.
+#
+#     :param funkcia: nazov funkcie
+#     :param zac: boolean ci zacina alebo konci
+#     :return:
+#     '''
+#     text = ""
+#     if zac == True:
+#         text = "# Zaciatok funkcie {} #".format(funkcia)
+#     else:
+#         text = "# Koniec funkcie {} #".format(funkcia)
+#
+#     ram = "#" * (len(text))
+#
+#     print(ram)
+#     print(text)
+#     print(ram)
+#
+# def vlastnyHexdump(bytes):
+#     '''
+#     Vlastny hexdump pre pripadne porovnanie rychlosti vypisu oproti normalnemu hexdumpu
+#
+#     :param bytes: bytes jedneho ramca urcene na vypis
+#     :return:
+#     '''
+#     n = 0
+#     for a in bytes:
+#         n += 1
+#         if n % 16 == 0:
+#             print("{:02x}".format(a))
+#         elif n % 8 == 0:
+#             print("{:02x}".format(a), end="  ")
+#         else:
+#             print("{:02x}".format(a), end=" ")
+#     n = 0
 
 def cesta(relCesta = ""):
-    zaciatokFunkcie(cesta.__name__, True)
+    '''
+    Funkcia vracajuca absolutnu cestu k suboru ktoru vytvori z relativnej cesty zacinajucej v priecinku s kodom.
+
+    :param relCesta: text relativnej cesty
+    :return: absolutna cesta
+    '''
+    # zaciatokFunkcie(cesta.__name__, True)
 
     dirname = os.path.dirname(__file__)
-    # filename = os.path.join(dirname, 'vzorky_pcap_na_analyzu/eth-8.pcap')
-    #filename = os.path.join(dirname, 'vzorky_pcap_na_analyzu/trace-24.pcap')
-    #print(dirname)
-    #print(type(dirname))
-    return(os.path.join(dirname, relCesta))
-    # return dirname + "/" + relCesta
-    #return(os.path.join(dirname, 'vzorky_pcap_na_analyzu/trace-24.pcap'))
 
-    zaciatokFunkcie(cesta.__name__, False)
+    return(os.path.join(dirname, relCesta))
+
+    # zaciatokFunkcie(cesta.__name__, False)
 
 def cestakSuboru():
-    zaciatokFunkcie(cestakSuboru.__name__, True)
+    '''
+    Funkcia ktora precita pomocny subor zoznamSuborov.txt obsahujuci relativne cesty ku vzorovym suborom,
+    vypise ho ocislovany na obrazovku a umozni vybrat si subor z tohoto zoznamu, pripadne zadat vlastnu
+    relativnu cestu k lubovolnemu suboru. Tento lubovolny subor je potrebne umiestnit do priecinka s kodom.
+    Funkcia taktiez umoznuje ukoncit program.
+
+    :return:
+    '''
+    # zaciatokFunkcie(cestakSuboru.__name__, True)
 
     path = cesta("zoznamSuborov.txt")
     #print(path)
@@ -60,19 +92,6 @@ def cestakSuboru():
 
     while True:
         vyber = int(input())
-        # vyber = 3               # kratky vzorovy vstup
-        # vyber = 25              # najvacsi vzorovy vstup
-        # vyber = 30              # obsahuje RAW
-        # vyber = 36              # obsahuje SNAP
-        # vyber = 37              # obsahuje IP hlavicky s dlzkou inou ako 20
-        # vyber = 10              # Kratky subor s ARP
-        # vyber = 29              # LLC, RAW, ARP, TCP/IP
-        # vyber = 28              # TELNET
-        # vyber = 5               # SSH
-        # vyber = 19              # Vypis flagov od spoluziaka
-        # vyber = 1               # Obsahuje RST
-        # vyber = 2
-
 
         if(vyber == -1):
             print("Koniec programu")
@@ -86,9 +105,15 @@ def cestakSuboru():
 
         print("Nespravna volba, zadaj znova:")
 
-    zaciatokFunkcie(cestakSuboru.__name__, False)
+    # zaciatokFunkcie(cestakSuboru.__name__, False)
 
 def protokolSubor():
+    '''
+    Funkcia precita externy subor protokoly.txt nachadzajuci sa v priecinku s kodom a prepise
+    ho do slovnika. Na jednom riadku moze byt iba jeden vstup.
+
+    :return: slovnik kodov protokolov
+    '''
     hexDict = {}
     meno = ""
     with open(cesta('protokoly.txt'), 'r') as prot:
@@ -99,16 +124,17 @@ def protokolSubor():
                 continue
             (cislo, nazov) = l.split(" ", 1)        # max pocet splitov je 1, lebo po cisle nasleduje nazov, ktory je vcelku
 
-            # cislo2 = int(cislo, 16)
-            # print(type(cislo2))
-            # print("{:04x}".format(cislo2))
-            # hexDict[int(cislo, 16)] = nazov
-            # print(meno, int(cislo, 16), nazov)
-
             hexDict[meno, int(cislo, 16)] = nazov[:-1]
     return hexDict
 
 def zistiPortProtokolu(hexDict, pismeno):
+    '''
+    Pomocna funkcia na zistenie cisla protokolu alebo portu ktory prislucha nejakemu nazvu.
+
+    :param hexDict: slovnik protokol
+    :param pismeno: jedno male pismeno pre vyber protokolu (podla zadania)
+    :return: cislo protokolu
+    '''
     if pismeno == "a":
         for cislo, nazov in hexDict.items():
             if nazov == "HTTP":
@@ -147,12 +173,26 @@ def zistiPortProtokolu(hexDict, pismeno):
                 return cislo[1]
 
 def riadic():
-    zaciatokFunkcie(riadic.__name__, True)
+    '''
+    Ovladacia funkcia programu - menu. Umoznuje vratit sa na vyber pcap suboru (odkial je mozno aj korektne ukoncit
+    program), vypisat obsah pcap suboru podla ulohy 1, vypisat obsah pcap suboru podla ulohy 1-2-3 a vypisat obsah
+    pcap suboru podla ulohy 4 a-i, pricom v kazdom z bodov a-i je moznost vybrat si ci ma byt vypis len hruby filter
+    ramcov daneho protokolu (0), alebo vypis organizovany do komunikacii (1).
+    Priklady vstupu (na vstupe moze byt len jeden znak alebo 3 znaky oddelene 2 medzerami):
+    0
+    1
+    3
+    4 a 0
+    4 i 1
+
+    :return:
+    '''
+    # zaciatokFunkcie(riadic.__name__, True)
     while(True):
         print("Zvol 0 pre vyber ineho pcap suboru")
         print("Zvol 1 pre vypis podla bodu 1")
         print("Zvol 3 pre vypis podla bodov 1-2-3 spolu")
-        print("Zvol 4 pre ulohu 4, zvol bod ulohy 4 a-i, zvol 0 ci vypisat iba ramce alebo 1 pre prvu kompletnu a prvu nekompletnu komunikaciu")
+        print("Zvol 4 pre ulohu 4, zvol bod ulohy 4 a-i, zvol 0 ci vypisat iba ramce alebo 1 pre vypis komunikacii podla zadania")
 
         vyber = input("Zadaj cisla [0,1,3] alebo vstup vo formate [4] [a-i] [0-1] ")
 
@@ -174,54 +214,106 @@ def riadic():
             print("Nespravna volba, opakuj vyber")
             continue
 
-        print(vyber)
-
-
-    zaciatokFunkcie(riadic.__name__, False)
+    # zaciatokFunkcie(riadic.__name__, False)
 
 def syn(flag):
+    '''
+    Funkcia kontrolujuca ci flag je presne SYN.
+
+    :param flag: flag TCP protokolu
+    :return: boolean
+    '''
     # presna zhoda
     if flag == 0x02:
         return True
     return False
 
 def synack(flag):
+    '''
+    Funkcia kontrolujuca ci flag je presne SYN a ACK.
+
+    :param flag: flag TCP protokolu
+    :return: boolean
+    '''
     # presna zhoda
     if flag == 0x12:
         return True
     return False
 
 def ack(flag):
+    '''
+    Funkcia kontrolujuca ci flag je presne ACK.
+
+    :param flag: flag TCP protokolu
+    :return: boolean
+    '''
     # presna zhoda
     if flag == 0x10:
         return True
     return False
 
 def fin(flag):
+    '''
+    Funkcia kontrolujuca ci flag obsahuje FIN.
+
+    :param flag: flag TCP protokolu
+    :return: boolean
+    '''
     # kontrola iba fin, volna zhoda
     if flag >> 0 & 1 == 1:
         return True
     return False
 
 def ackfin(flag):
+    '''
+    Funkcia kontrolujuca ci flag obsahuje FIN a ACK.
+
+    :param flag: flag TCP protokolu
+    :return: boolean
+    '''
     # kontrola iba fin a iba ack, volna zhoda
     if flag >> 0 & 1 == 1 and flag >> 4 & 1 == 1:
         return True
     return False
 
 def rst(flag):
+    '''
+    Funkcia kontrolujuca ci flag obsahuje RST.
+
+    :param flag: flag TCP protokolu
+    :return: boolean
+    '''
     # kontrola iba rst, volna zhoda
     if flag >> 2 & 1 == 1:
         return True
     return False
 
 def otvorenieKomunikacie(flag_z0, flag_z1, flag_z2):
+    '''
+    Funkcia na overenie, ci bola komunikacia otvorena 3 way handshakeom (SYN-SYNACK-ACK).
+
+    :param flag_z0: flag ramca 0 komunikacie
+    :param flag_z1: flag ramca 1 komunikacie
+    :param flag_z2: flag ramca 2 komunikacie
+    :return: boolean
+    '''
     if syn(flag_z0) and synack(flag_z1) and ack(flag_z2):
         # print("Komunikacia otvorena")
         return True
     return False
 
 def zatvorenieKomunikacie(flag_k1, flag_k2, flag_k3, flag_k4, zaznam):
+    '''
+    Funkcia na overenie, ci bola komunikacia uzavreta. Su osetrene 4 way handshake, 3 way handshake, RST ukoncenie
+    aj ukoncenie jedneho uzla skor ako druheho.
+
+    :param flag_k1: flag posledneho ramca komunikacie
+    :param flag_k2: flag predposledneho ramca komunikacie
+    :param flag_k3: flag 3 ramca od konca komunikacie
+    :param flag_k4: flag 4 ramca od konca komunikacie
+    :param zaznam: list tuples ramcov komunikacie. Tuple obsahuje [0] poradove cislo ramce a [1] flag ramca
+    :return: boolean
+    '''
     if (ack(flag_k1) and fin(flag_k2) and ack(flag_k3) and fin(flag_k4)):
         # FIN ACK FIN ACK
         return True
@@ -251,6 +343,9 @@ def uloha1(rawPacketList):
     '''
     Vypis dlzok ramca, typu ramca a MAC adries podla poziadaviek bodu 1 v zadani. Najpomalsou castou funkcie je
     hexdump() vypis.
+
+    :param rawPacketList: zoznam bajtov celeho suboru
+    :return:
     '''
     # zaciatokFunkcie(uloha1.__name__, True)
 
@@ -290,6 +385,14 @@ def uloha1(rawPacketList):
     # zaciatokFunkcie(uloha1.__name__, False)
 
 def uloha2(rawPacketList, hexDict):
+    '''
+    Vypis ramcov podla zadania ulohy 2. Vo finalnom odovzdani nie je moznost volat ako samostatnu funkciu,
+    tato funkcia je sucastou funkcie 3.
+
+    :param rawPacketList: zoznam bajtov celeho suboru
+    :param hexDict: slovnik protokolov
+    :return:
+    '''
     # zaciatokFunkcie(uloha2.__name__, True)
 
     ramec = 1
@@ -342,6 +445,16 @@ def uloha2(rawPacketList, hexDict):
     # zaciatokFunkcie(uloha2.__name__, False)
 
 def uloha3(rawPacketList, hexDict):
+    '''
+    Funkcia pokryva poziadavky na vypis ramcov podla uloh 1-2-3. Urcuje sa protokol
+    na 2-4 vrstve + pri TCP a UDP aj port, pri ICMP a ARP aj typy spravy. Na konci vypisu
+    je uvedeny zoznam IP adries vsetkych prijimajucich uzlov a IP adresa uzla ktory prijal
+    najviac paketov a pocet tychto paketov.
+
+    :param rawPacketList: zoznam bajtov celeho suboru
+    :param hexDict: slovnik protokolov
+    :return:
+    '''
     # zaciatokFunkcie(uloha3.__name__, True)
 
     ramec = 1
@@ -406,7 +519,7 @@ def uloha3(rawPacketList, hexDict):
             except KeyError:
                 print("Neznámy Ethertype 0x{:04x}".format(num1213))
             if num1213 == 0x0806:
-                # Toto je analyza ARP natvrdo. Co ak sa zmeni kod IPv4?
+                # Toto je analyza ARP natvrdo, podla cisla protokolu.
                 arp = True
                 try:
                     print(hexDict['ARP', item[21]])
@@ -418,7 +531,7 @@ def uloha3(rawPacketList, hexDict):
                 print("cieľová protokolová adresa:", ".".join("{}".format(x) for x in item[38:42]))
 
             if num1213 == 0x0800:
-                # Toto je analyza IPv4 natvrdo. Co ak sa zmeni kod IPv4?
+                # Toto je analyza IPv4 natvrdo, podla cisla protokolu.
                 ipv4 = True
                 print("zdrojová IP adresa:", ".".join("{}".format(x) for x in item[26:30]))
                 print("cieľová IP adresa:", ".".join("{}".format(x) for x in item[30:34]))
@@ -434,17 +547,21 @@ def uloha3(rawPacketList, hexDict):
                     print("Neznamy IP protokol {}".format(item[23]))
 
                 if item[23] == 0x06:
-                    # Ak je to TCP tak sa bude pokracovat
+                    # Ak je to TCP tak sa bude pokracovat v analyze TCP
                     tcp = True
                 if item[23] == 0x11:
+                    # Ak je to UDP tak sa bude pokracovat v analyze UDP
                     udp = True
                 if item[23] == 0x01:
+                    # Ak je to ICMP tak sa bude pokracovat v analyze ICMP
                     icmp = True
 
+                # Vypocet velkosti IP hlavicky ktora moze mat premenlivu dlzku
                 ipOffset = dlhOffset + (item[14] % 16) * 4
                 # print(ipOffset)
 
         if tcp and ipv4:
+            # Analyza TCP
             srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
             dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]
 
@@ -463,6 +580,8 @@ def uloha3(rawPacketList, hexDict):
             print("cieľový port:", dstPort)
 
         if udp and ipv4:
+            # Analyza UDP
+
             srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
             dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]
 
@@ -481,6 +600,7 @@ def uloha3(rawPacketList, hexDict):
             print("cieľový port:", dstPort)
 
         if icmp and ipv4:
+            # Analyza ICMP
             type = item[ipOffset]
             try:
                 print(hexDict['ICMP', type])
@@ -490,6 +610,7 @@ def uloha3(rawPacketList, hexDict):
         hexdump(item)
         print()
 
+    # Pocty uzlov
     print("IP adresy prijímajúcich uzlov:")
     for i in prijimajuceUzly:
         print(".".join("{}".format(x) for x in i))
@@ -500,6 +621,15 @@ def uloha3(rawPacketList, hexDict):
     # zaciatokFunkcie(uloha3.__name__, False)
 
 def konkretnePakety(rawPacketList, hexDict, zoznam):
+    '''
+    Funkcia na vypis konkretnych ramcov z rawPacketList a cislovanych podla zoznamu. Tato funkcia je
+    uprava funkcie uloha3 a uloha4 pre potreby vypisov paketov podla komunikacii pozadovana v bode 4 zadania.
+
+    :param rawPacketList: zoznam bajtov komunikacie
+    :param hexDict: slovnik protokolov
+    :param zoznam: zoznam poradovych cisel ramcov komunikacie
+    :return:
+    '''
     # zaciatokFunkcie(konkretnePakety.__name__, True)
 
     ramec = 0
@@ -579,6 +709,7 @@ def konkretnePakety(rawPacketList, hexDict, zoznam):
                 TPA = item[38:42]
 
                 if ramec == 1 and OPE == 1:
+                    # Ak je ARP Request ramec prvym ramcom komunikacie, vypise hlavicku
                     sprava2 = ""
                     try:
                         sprava2 += "ARP {}, ".format(hexDict['ARP', item[21]])
@@ -593,12 +724,13 @@ def konkretnePakety(rawPacketList, hexDict, zoznam):
                     sprava = sprava2 + sprava
 
                 if OPE == 2:
+                    # Ak je ramec ARP Reply, vypise hlavicku
                     sprava2 = ""
                     try:
                         sprava2 += "ARP {}, ".format(hexDict['ARP', item[21]])
                     except KeyError:
                         sprava2 += "Neznáma ARP operácia {}, ".format(item[21])
-                    sprava2 += "IP adresa: " + ".".join("{}".format(x) for x in item[38:42]) + ", "
+                    sprava2 += "IP adresa: " + ".".join("{}".format(x) for x in item[28:32]) + ", "
                     sprava2 += "MAC adresa: " + " ".join("{:02X}".format(x) for x in item[32:38]) + "\n"
 
                     sprava2 += "Zdrojová IP adresa: " + ".".join("{}".format(x) for x in item[28:32]) + ", "
@@ -666,9 +798,22 @@ def konkretnePakety(rawPacketList, hexDict, zoznam):
     # zaciatokFunkcie(konkretnePakety.__name__, False)
 
 def redukciaAvypis(rawPacketList, hexDict, zoznam):
+    '''
+    Funkcia na zmensenie zoznamu paketov a zoznamu poradovych cisel. Pre potreby splnenia
+    poziadavky bodu 4 zadania, kedy vypisujeme len prvu uplnu a prvu neuplnu komunikaciu
+    a zaroven ak ma komunikacia viac ako 20 ramcov tak len prvych 10 a poslednych 10. Teda
+    ak ma komunikacia nad 20 ramcov, zredukujeme ju na 20 ramcov, ak ma 20 a menej, vypiseme ju celu.
+    Vypis pouziva funkcii konkretnePakety.
+
+    :param rawPacketList: zoznam bajtov komunikacie
+    :param hexDict: slovnik protokolov
+    :param zoznam: zoznam poradovych cisel ramcov komunikacie
+    :return:
+    '''
     rawPacLen = len(rawPacketList)
 
     if rawPacLen > 20:
+        # Zredokovanie komunikacie na 20 ramcov pokial ma cela komunikacia nad 20 ramcov
         pacFront = [x for x in rawPacketList[:10]]
         pacBack = [x for x in rawPacketList[-10:]]
 
@@ -680,9 +825,20 @@ def redukciaAvypis(rawPacketList, hexDict, zoznam):
 
         konkretnePakety(pacSpolu, hexDict, zoznamSpolu)
     else:
+        # Vypis celej komunikacie, ak ma 20 a menej ramcov
         konkretnePakety(rawPacketList, hexDict, zoznam)
 
 def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
+    '''
+    Funkcia na filtrovanie ucelenych komunikacii. Komunikacie zoskupi do slovnika a vypise funkciou
+    redukciaAvypis.
+
+    :param rawPacketList: zoznam bajtov celeho suboru
+    :param hexDict: slovnik protokolov
+    :param zadanyPort: sledovany port alebo protokol
+    :param ibaPrva: boolean ci sledujeme iba prvu uplnu a prvu neuplnu komunikaciu, alebo vsetky
+    :return:
+    '''
     # zaciatokFunkcie(komunikacie.__name__, True)
 
     ramec = 1
@@ -723,24 +879,25 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
             num1213 = 256 * item[12] + item[13]
 
             if num1213 == 0x0800:
-                # Toto je analyza IPv4 natvrdo. Co ak sa zmeni kod IPv4?
+                # Toto je analyza IPv4 natvrdo, podla cisla protokolu.
                 ipv4 = True
 
                 if item[23] == 0x01 and zadanyPort == 0x01:
-                    # Ak je to ICMP tak sa bude pokracovat
+                    # Ak je to ICMP a zaroven sledujem ICMP, tak sa bude pokracovat v analyze ICMP
                     icmp = True
                 elif item[23] == 0x06 and zadanyPort != 0x01 and zadanyPort != 0x0806:
-                    # Ak je to TCP a zaroven nesledujem ICMP ani ARP, tak sa bude pokracovat
+                    # Ak je to TCP a zaroven nesledujem ICMP ani ARP, tak sa bude pokracovat v analyze TCP
                     tcp = True
 
                 ipOffset = dlhOffset + (item[14] % 16) * 4
 
             if num1213 == 0x0806 and zadanyPort == 0x0806:
-                # Toto je analyza ARP natvrdo. Co ak sa zmeni kod IPv4?
+                # Toto je analyza ARP natvrdo, podla cisla protokolu
                 arp = True
                 vypisARP = True
 
         if tcp and ipv4:
+            # Ak je ramec TCP a sledujeme TCP ramce, prida sa do slovnika
 
             srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
             dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]
@@ -762,6 +919,8 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     komunikacieDict[porty[0], porty[1]].append((ramec, flag))       # poradove cislo ramca
 
         if icmp and ipv4:
+            # Ak je ramec ICMP a sledujeme ICMP ramce, prida sa do slovnika
+
             type = item[ipOffset]
 
             srcIP = item[26:30]
@@ -772,6 +931,8 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
             komunikacieDict[ramec] = (srcIP, dstIP, type)
 
         if arp:
+            # Ak je ramec ARP a sledujeme ARP ramce, prida sa do slovnika
+
             OPE = item[21]
             SHA = item[22:28]
             SPA = item[28:32]
@@ -783,6 +944,8 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
         ramec += 1
 
     if vypisTCP:
+        # Delenie TCP ramcov do komunikacii
+
         # print("Teraz")
         otvorena = False
         zatvorena = False
@@ -800,6 +963,7 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
         booleanNeup = False
 
         for k in komunikacieDict:
+            # Prechod cez vsetky ramce slovnika
             otvorena = False
             zatvorena = False
 
@@ -828,12 +992,14 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     pass
 
                 if ibaPrva and otvorena and zatvorena and not booleanUp:
+                    # Ulozenie prvej uplnej komunikacie
                     prvaUplna = [i[0] for i in komunikacieDict[k]]
                     for i in prvaUplna:
                         prvaUplnaSubList.append(rawPacketList[i - 1])
                     booleanUp = True
                     prvaUplnaSubListMap = prvaUplna
                 elif ibaPrva and otvorena and zatvorena == False and not booleanNeup:
+                    # Ulozenie prvej nekompletnej komunikacie
                     prvaNeuplna = [i[0] for i in komunikacieDict[k]]
                     for i in prvaNeuplna:
                         prvaNeuplnaSubList.append(rawPacketList[i - 1])
@@ -843,6 +1009,9 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     pass
 
                 if booleanUp and booleanNeup:
+                    # Ak bola najdena prva uplna a prva neuplna komunikacia skor ako sa
+                    # zanalyzoval cely slovnik, komunikacie sa vypisu a funkcia konci
+
                     # return prvaUplna, prvaNeuplna
                     print("Prva uplna (otvorena a zatvorena) komunikacia")
                     # konkretnePakety(prvaUplnaSubList, hexDict, prvaUplnaSubListMap)
@@ -857,6 +1026,8 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                 # print("Prilis kratka komunikacia")
 
         if ibaPrva:
+            # Ak sa zanalyzoval cely slovnik, znamena to, ze uplna, neuplna, alebo obe komunikacie sa nenasli.
+            # Ak sa nejaka nasla, tak sa vypise komunikacia, ak sa nenasla, vypise sa hlasenie.
             if prvaUplna == None:
                 print("Ziadna uplna (otvorena a zatvorena) komunikacia nebola najdena")
             else:
@@ -872,18 +1043,22 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
         return
 
     if vypisICMP:
+        # Vypis parov ICMP echo-reply
+
         ipSrc1, ipDst1, ipSrc2, ipDst2, type1, type2, k1, k2 = None, None, None, None, None, None, None, None
         b = True
         cislo = 1
 
         for k in komunikacieDict:
             if b and komunikacieDict[k][2] == 8:
+                # Prve v komunikacii je echo
                 ipSrc1 = komunikacieDict[k][0]
                 ipDst1 = komunikacieDict[k][1]
                 type1 = komunikacieDict[k][2]
                 k1 = k
                 b = False
             else:
+                # Druhe v komunikacii je reply
                 ipSrc2 = komunikacieDict[k][0]
                 ipDst2 = komunikacieDict[k][1]
                 type2 = komunikacieDict[k][2]
@@ -891,6 +1066,7 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                 b = True
                 # print("2", ipSrc2, ipDst2, type2)
                 if (type1 == 8 and type2 == 0 and ipSrc1 == ipDst2 and ipSrc2 == ipDst1):
+                    # Vypise sa komunikacia ak pakety tvoria par
                     print("Komunikacia c. {}".format(cislo))
                     cislo += 1
                     rawPacketSubList = []
@@ -901,11 +1077,14 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     konkretnePakety(rawPacketSubList, hexDict, zoznam)
 
     if vypisARP:
+        # Vypis ARP komunikacii
         komunikacia = 1
 
         for a in komunikacieDict:
             # print(a, komunikacieDict[a])
             if komunikacieDict[a][0] == 1:
+                # Ak je komunikacia request, prida sa do slovnika
+
                 RSHA = komunikacieDict[a][1]
                 RSPA = komunikacieDict[a][2]
                 RTHA = komunikacieDict[a][3]
@@ -917,12 +1096,14 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     arpDict[RSHA, RSPA, RTPA].append(a)
 
             elif komunikacieDict[a][0] == 2:
+                # Ak je komunikacia reply, pokusim sa najst jej v slovniku par
 
                 PSHA = komunikacieDict[a][1]
                 PSPA = komunikacieDict[a][2]
                 PTHA = komunikacieDict[a][3]
                 PTPA = komunikacieDict[a][4]
                 if (PTHA, PTPA, PSPA) in arpDict:
+                    # Ak v slovniku existuje pre Reply parik s Request, vypise sa komunikacia a vymaze sa zo slovnika
                     arpDict[PTHA, PTPA, PSPA].append(a)
                     print("Komunikacia c. {}".format(komunikacia))
                     komunikacia += 1
@@ -932,6 +1113,7 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
                     konkretnePakety(rawPacketSubList2, hexDict, arpDict[PTHA, PTPA, PSPA])
                     arpDict.pop((PTHA, PTPA, PSPA), None)
                 else:
+                    # Ak pre Reply neexistuje v slovniku Request, vypise sa ako samostatny Reply
                     print("Komunikacia c. {} (iba samostatny reply)".format(komunikacia))
                     komunikacia += 1
                     rawPacketSubList2 = []
@@ -940,6 +1122,8 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
 
 
         for ad in arpDict:
+            # Ak komunikacie obsahovali len Requesty, komunikacie sa vypisu ako neuplne
+
             print("Komunikacia c. {} (neuplna)".format(komunikacia))
             komunikacia += 1
             rawPacketSubList2 = []
@@ -950,6 +1134,18 @@ def komunikacie(rawPacketList, hexDict, zadanyPort = None, ibaPrva = False):
     # zaciatokFunkcie(komunikacie.__name__, False)
 
 def uloha4(rawPacketList, hexDict, prepinac):
+    '''
+    Funkcia vypisuje ramce konkretneho typu. Urcuje sa protokol na 2-4 vrstve
+    + pri TCP a UDP aj port, pri ICMP a ARP aj typy spravy. Vypisuju sa vsetky
+    pakety daneho typu. Napriklad sa zo suboru vypisu len vsetky HTTP pakety
+    a ziadne ine. Funkcia priamo v zadani ziadana nie je, pridavam ju len pre moznost filtrovania.
+    Tato funkcia sa pouziva na vypis TFTP komunikacii.
+
+    :param rawPacketList: zoznam bajtov celeho suboru
+    :param hexDict: slovnik protokolov
+    :param prepinac: jedno pismeno a-i urcujuce co sa bude vypisovat
+    :return:
+    '''
     # zaciatokFunkcie(uloha4.__name__, True)
 
     ramec = 1
@@ -1015,7 +1211,7 @@ def uloha4(rawPacketList, hexDict, prepinac):
             except KeyError:
                 sprava += "Neznámy Ethertype 0x{:04x}\n".format(num1213)
             if num1213 == 0x0806:
-                # Toto je analyza ARP natvrdo. Co ak sa zmeni kod IPv4?
+                # Toto je analyza ARP natvrdo, podla cisla protokolu
                 arp = True
                 try:
                     sprava += "{}\n".format(hexDict['ARP', item[21]])
@@ -1033,7 +1229,7 @@ def uloha4(rawPacketList, hexDict, prepinac):
                     print()
 
             if num1213 == 0x0800:
-                # Toto je analyza IPv4 natvrdo. Co ak sa zmeni kod IPv4?
+                # Toto je analyza IPv4 natvrdo, podla cisla protokolu
                 ipv4 = True
                 sprava += "zdrojová IP adresa: " + ".".join("{}".format(x) for x in item[26:30]) + "\n"
                 sprava += "cieľová IP adresa: " + ".".join("{}".format(x) for x in item[30:34]) + "\n"
@@ -1049,16 +1245,20 @@ def uloha4(rawPacketList, hexDict, prepinac):
                     sprava += "Neznamy IP protokol {}\n".format(item[23])
 
                 if item[23] == 0x06:
-                    # Ak je to TCP tak sa bude pokracovat
+                    # Ak je to TCP tak sa bude pokracovat vypisom TCP
                     tcp = True
                 if item[23] == 0x11:
+                    # Ak je to UDP tak sa bude pokracovat vypisom UDP
                     udp = True
                 if item[23] == 0x01:
+                    # Ak je to ICMP tak sa bude pokracovat vypisom ICMP
                     icmp = True
 
                 ipOffset = dlhOffset + (item[14] % 16) * 4
 
         if tcp and ipv4:
+            # Vypis konkretnych TCP paketov podla porty zvoleneho v moznostiach a-f
+
             srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
             dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]
 
@@ -1104,6 +1304,7 @@ def uloha4(rawPacketList, hexDict, prepinac):
 
 
         if udp and ipv4:
+            # Vypis TFTP komunikacie
             srcPort = item[ipOffset] * 256 + item[ipOffset + 1]
             dstPort = item[ipOffset + 2] * 256 + item[ipOffset + 3]
 
@@ -1142,6 +1343,8 @@ def uloha4(rawPacketList, hexDict, prepinac):
                 print()
 
         if icmp and ipv4:
+            # Vypis ICMP ramcov
+
             type = item[ipOffset]
             try:
                 sprava += "{}\n".format(hexDict['ICMP', type])
@@ -1156,7 +1359,15 @@ def uloha4(rawPacketList, hexDict, prepinac):
     # zaciatokFunkcie(uloha4.__name__, False)
 
 def main():
-    zaciatokFunkcie(main.__name__, True)
+    '''
+    Hlavna funkcia programu. V slucke sa funkciou vyziada vyber suboru, otvori sa pcap subor
+    a vyziada sa akcia dalsou funkciou. Na zaklade vyberu akcie sa zavola konkretna funkcia, ktora danu
+    funkcionalitu poskytuje. Vypis je presmerovany do externeho textoveho suboru, ktory sa nachadza
+    v priecinku so zdrojovym kodom. Zakomentovana je funkcionalita merania casu jednotlivych operacii.
+
+    :return:
+    '''
+    # zaciatokFunkcie(main.__name__, True)
 
     origVystup = sys.stdout
 
@@ -1183,7 +1394,7 @@ def main():
 
         volby = riadic()
         while(volby != "0"):
-            print("Bola zvlolena moznost", volby)
+            print("Bola zvolena moznost", volby)
             outputFile = open(cesta('vystup.txt'), 'w')
             sys.stdout = origVystup
 
@@ -1228,7 +1439,7 @@ def main():
 
         filename = cestakSuboru()
 
-    zaciatokFunkcie(main.__name__, False)
+    # zaciatokFunkcie(main.__name__, False)
 
 if __name__ == "__main__":
     main()
