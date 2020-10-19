@@ -193,14 +193,17 @@ def riadic():
         print("Zvol 1 pre vypis podla bodu 1")
         print("Zvol 3 pre vypis podla bodov 1-2-3 spolu")
         print("Zvol 4 pre ulohu 4, zvol bod ulohy 4 a-i, zvol 0 ci vypisat iba ramce alebo 1 pre vypis komunikacii podla zadania")
+        print("Zvol 5 pre riesenie doimplementacie")
 
-        vyber = input("Zadaj cisla [0,1,3] alebo vstup vo formate [4] [a-i] [0-1] ")
+        # vyber = input("Zadaj cisla [0,1,3] alebo vstup vo formate [4] [a-i] [0-1] ")
+        vyber = input("Zadaj cisla [0,1,3,5] alebo vstup vo formate [4] [a-i] [0-1] ")
 
         vyber4 = ""
         rozsah = [chr(i) for i in range(ord("a"), ord("j"))]
 
         if len(vyber) == 1:
-            if vyber != "0" and vyber != "1" and vyber != "3":
+            # if vyber != "0" and vyber != "1" and vyber != "3":
+            if vyber != "0" and vyber != "1" and vyber != "3" and vyber != "5":
                 print("Nespravna volba, opakuj vyber")
                 continue
             return vyber
@@ -1153,6 +1156,8 @@ def uloha4(rawPacketList, hexDict, prepinac):
     prijimajuceUzly = Counter()
     etherII = False
 
+    rip = 0
+
     for item in rawPacketList:
         etherII = False
 
@@ -1342,6 +1347,12 @@ def uloha4(rawPacketList, hexDict, prepinac):
                 hexdump(item)
                 print()
 
+            if prepinac == "r" and mensi == 0x208:
+                rip += 1
+                print(sprava, end="")
+                hexdump(item)
+                print()
+
         if icmp and ipv4:
             # Vypis ICMP ramcov
 
@@ -1355,6 +1366,9 @@ def uloha4(rawPacketList, hexDict, prepinac):
                 print(sprava, end="")
                 hexdump(item)
                 print()
+
+    if prepinac == "r":
+        print("Pocet ramcov UDP RIP na porte 520 je", rip)
 
     # zaciatokFunkcie(uloha4.__name__, False)
 
@@ -1432,6 +1446,15 @@ def main():
                 # casU4KomKon = datetime.datetime.now()
                 sys.stdout = origVystup
                 # print("Funkcia komunikacie() zabrala {} ms".format((casU4KomKon - casU4KomZac).total_seconds() * 1000))
+
+            if volby[0] == "5":
+                print("Zaciatok doimplementacie (UDP RIP port 520)")
+
+                sys.stdout = outputFile
+                uloha4(rawPacketList, hexDict, "r")
+                sys.stdout = origVystup
+
+                print("Koniec doimplementacie (UDP RIP port 520)")
 
             outputFile.close()
 
